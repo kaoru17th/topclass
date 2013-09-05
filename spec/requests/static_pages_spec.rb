@@ -2,44 +2,29 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-  describe "Home page" do
+  subject { page }
 
-    it "should have the content 'TopClass Coordinador'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('TopClass Coordinador')
-    end
-	
-	    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      expect(page).to have_title("TopClass | Home")
-    end
+
+  describe "Home page" do
+    before { visit root_path }
+
+    it { should have_content('TopClass') }
+    it { should have_title("Home") }
 	
   end
   
     describe "Help page" do
+	    before { visit help_path }
 
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
-	
-	    it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_title("TopClass | Help")
-    end
+    it { should have_content('Help') }
+    it { should have_title("Help") }
 	
   end
   
    describe "About page" do
+       before { visit about_path }
 
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About Us')
-    end
-	
-	    it "should have the title 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_title("TopClass | About Us")
-    end
+    it { should have_content('About Us') }
+    it { should have_title("About Us") }
   end
 end
