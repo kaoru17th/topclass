@@ -49,6 +49,7 @@ group :test, :development do
   gem 'database_cleaner' #Limpia la base de datos entre pruebas
   gem 'capybara' #web browser tester
   gem 'launchy' #debug de las user stories
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :test do
