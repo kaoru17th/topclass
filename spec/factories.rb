@@ -6,7 +6,7 @@ FactoryGirl.define do
     identificationtype "CC" 
     sequence(:identification) { |n| "1234566#{n}"}
     status "Activo" 
-    usertype "Estudiante" 
+    usertype "Coordinador" 
     password "test12345" 
     password_confirmation "test12345" 
     sequence(:email) { |n| "person_#{n}@example.com"}
