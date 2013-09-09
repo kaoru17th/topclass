@@ -17,7 +17,16 @@ describe User do
   it { should respond_to(:authenticate) }
   
   it { should be_valid }
-  
+  it { should_not be_admin }
+
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.usertype = "Coordinador"
+    end
+
+    it { should be_admin }
+  end
 
 
   describe "when firstname is not present" do
