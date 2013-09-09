@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "User pages" do
 
   subject { page }
-  
+
   describe "index" do
     let(:user) { FactoryGirl.create(:user) }
     before(:each) do
@@ -27,7 +27,7 @@ describe "User pages" do
         end
       end
     end
-    
+
     describe "delete links" do
 
       it { should_not have_link('delete') }
@@ -46,20 +46,20 @@ describe "User pages" do
           end.to change(User, :count).by(-1)
         end
         it { should_not have_link('delete', href: user_path(admin)) }
-        
+
         ##validate disable
         it { should have_link('disable', href: user_path(User.first)) }
         it "should be able to disable another user" do
           expect do
             click_link('disable', match: :first)
             it { should have_selector('div.alert.alert-success') }
+          end
+          it { should_not have_link('disable', href: user_path(admin)) }
+
         end
-        it { should_not have_link('disable', href: user_path(admin)) }
-        
-        
       end
     end
-    
+
   end
 
   describe "profile page" do
@@ -106,7 +106,7 @@ describe "User pages" do
       end
     end
   end
-  
+
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
     before do
@@ -124,7 +124,7 @@ describe "User pages" do
       let(:new_name)  { "New Name" }
       let(:new_lastname) { "new@example.com" }
       before do
-        
+
         fill_in "Firstname",         with: new_name
         fill_in "Lastname",        with: new_lastname
         fill_in "Code",        with: "200012581"
@@ -140,6 +140,6 @@ describe "User pages" do
       it { should have_link('Sign out', href: signout_path) }
       specify { expect(user.reload.name).to  eq new_name }
       specify { expect(user.reload.email).to eq new_email }
-  end
+    end
   end
 end
