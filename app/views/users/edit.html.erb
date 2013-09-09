@@ -1,0 +1,43 @@
+<% provide(:title, "Edit user") %>
+<h1>Edit User</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+     <%= render 'shared/error_messages' %>
+
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname %>
+      
+      <%= f.label :lastname %>
+      <%= f.text_field :lastname %>
+      
+            <%= f.label :code %>
+      <%= f.text_field :code %>
+      
+            <%= f.label :identificationtype, "Identification Type" %>
+     <%=f.select(:identificationtype,options_for_select([["CC", "CC"], ["CE", "CE"]]))%>       
+      
+            <%= f.label :identification %>
+      <%= f.text_field :identification %>
+      
+      <%= f.label :status %>
+     <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
+      
+            <%= f.label :usertype,"User Type" %>
+     <%=f.select(:usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"]]))%>   
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>
+  </div>
+</div>
