@@ -2,8 +2,17 @@
 <h2>Dashboard de coordinador</h2>
 
 <h3>Indicadores y metricas actuales del semestre:</h3>
-
+<br/>
+<br/>
 <h3>Semestre actual:</h3>
-<%=form_for(@program_semester) do |p| %>
 
+<br/>
+<br/>
+<% @program_semester.each do |ps|%>
+	<%=form_for(@ps) do |program| %>
+		<%= render 'shared/error_messages' %>
+	<%end %>
+<% end %>
+<%if @program_semester.empty?%>
+	<h4>No existe un semestre activo!</h4>
 <% end %>
