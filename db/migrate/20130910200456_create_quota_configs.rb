@@ -1,10 +1,10 @@
 class CreateQuotaConfigs < ActiveRecord::Migration
   def change
     create_table :quota_configs do |t|
-      t.integer :idsubject
-      t.integer :ownquota
-      t.integer :programquota
-      t.integer :pregradequota
+      t.integer :subject_id
+      t.integer :own_quota
+      t.integer :program_quota
+      t.integer :pregrade_quota
 
       t.timestamps
     end

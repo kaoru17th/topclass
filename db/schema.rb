@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910151249) do
+ActiveRecord::Schema.define(version: 20130910200741) do
 
   create_table "preregister_subjects", force: true do |t|
-    t.integer  "idsemester"
-    t.integer  "idsubject"
-    t.integer  "iduserstudent"
+    t.integer  "semester_id"
+    t.integer  "subject_id"
+    t.integer  "user_id_student"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "program_semesters", force: true do |t|
-    t.integer  "idprogram"
-    t.integer  "idsemester"
+    t.integer  "program_id"
+    t.integer  "semester_id"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 20130910151249) do
   end
 
   create_table "quota_configs", force: true do |t|
-    t.integer  "idsubject"
-    t.integer  "ownquota"
-    t.integer  "programquota"
-    t.integer  "pregradequota"
+    t.integer  "subject_id"
+    t.integer  "own_quota"
+    t.integer  "program_quota"
+    t.integer  "pregrade_quota"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20130910151249) do
   end
 
   create_table "subject_programs", force: true do |t|
-    t.integer  "idsubject"
-    t.integer  "idprogram"
+    t.integer  "subject_id"
+    t.integer  "program_id"
     t.string   "status"
     t.string   "subjecttype"
     t.datetime "created_at"
@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(version: 20130910151249) do
   end
 
   create_table "subject_records", force: true do |t|
-    t.integer  "idsemester"
-    t.integer  "iduserstudent"
-    t.integer  "idsubject"
-    t.integer  "iduserteacher"
+    t.integer  "semester_id"
+    t.integer  "user_id_student"
+    t.integer  "subject_id"
+    t.integer  "user_id_teacher"
     t.float    "grade"
     t.string   "status"
     t.datetime "created_at"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20130910151249) do
   end
 
   create_table "subject_semesters", force: true do |t|
-    t.integer  "idsubject"
-    t.integer  "idsemester"
+    t.integer  "subject_id"
+    t.integer  "semester_id"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -96,16 +96,16 @@ ActiveRecord::Schema.define(version: 20130910151249) do
   end
 
   create_table "teacher_subjects", force: true do |t|
-    t.integer  "iduserteacher"
-    t.integer  "idsubject"
+    t.integer  "user_id"
+    t.integer  "subject_id"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "user_programs", force: true do |t|
-    t.integer  "iduser"
-    t.integer  "idprogram"
+    t.integer  "user_id"
+    t.integer  "program_id"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"

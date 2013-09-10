@@ -1,8 +1,8 @@
 class CreateProgramSemesters < ActiveRecord::Migration
   def change
     create_table :program_semesters do |t|
-      t.integer :idprogram
-      t.integer :idsemester
+      t.integer :program_id
+      t.integer :semester_id
       t.string :status
 
       t.timestamps
