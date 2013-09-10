@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904164821) do
+ActiveRecord::Schema.define(version: 20130910151249) do
 
   create_table "preregister_subjects", force: true do |t|
     t.integer  "idsemester"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20130904164821) do
   create_table "subjects", force: true do |t|
     t.string   "name"
     t.string   "code"
-    t.string   "quota"
+    t.integer  "quota"
     t.integer  "credits"
     t.string   "status"
     t.datetime "created_at"

@@ -24,7 +24,7 @@
      <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
       
             <%= f.label :usertype,"User Type" %>
-     <%=f.select(:usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"]]))%>   
+     <%=f.select(:usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"], ["Profesor", "Profesor"]]))%>   
 
       <%= f.label :email %>
       <%= f.text_field :email %>
