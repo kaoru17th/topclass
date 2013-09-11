@@ -48,5 +48,15 @@ describe Program do
     before { @program.objective = "a" * 501 }
     it { should_not be_valid }
   end
+  
+  describe "when code is already taken" do
+    before do
+      program_with_same_code = @program.dup
+      program_with_same_code.code = @program.code.upcase
+      program_with_same_code.save
+    end
+
+    it { should_not be_valid }
+  end
 
 end

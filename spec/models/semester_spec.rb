@@ -38,6 +38,16 @@ describe Semester do
     before { @semester.name = "a" * 51 }
     it { should_not be_valid }
   end
+  
+  describe "when name is already taken" do
+    before do
+      semester_with_same_code = @semester.dup
+      semester_with_same_code.name = @semester.name.upcase
+      semester_with_same_code.save
+    end
+
+    it { should_not be_valid }
+  end
 
 
 end

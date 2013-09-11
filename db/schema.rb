@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910200741) do
+ActiveRecord::Schema.define(version: 20130910210516) do
 
   create_table "preregister_subjects", force: true do |t|
     t.integer  "semester_id"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20130910200741) do
     t.datetime "updated_at"
   end
 
+  add_index "programs", ["code"], name: "index_programs_on_code", unique: true
+
   create_table "quota_configs", force: true do |t|
     t.integer  "subject_id"
     t.integer  "own_quota"
@@ -56,6 +58,8 @@ ActiveRecord::Schema.define(version: 20130910200741) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "semesters", ["name"], name: "index_semesters_on_name", unique: true
 
   create_table "subject_programs", force: true do |t|
     t.integer  "subject_id"
@@ -95,6 +99,8 @@ ActiveRecord::Schema.define(version: 20130910200741) do
     t.datetime "updated_at"
   end
 
+  add_index "subjects", ["code"], name: "index_subjects_on_code", unique: true
+
   create_table "teacher_subjects", force: true do |t|
     t.integer  "user_id"
     t.integer  "subject_id"
@@ -110,6 +116,8 @@ ActiveRecord::Schema.define(version: 20130910200741) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_programs", ["user_id", "program_id"], name: "index_user_programs_on_user_id_and_program_id", unique: true
 
   create_table "users", force: true do |t|
     t.string   "firstname"

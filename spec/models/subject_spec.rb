@@ -59,4 +59,15 @@ before { @subject = Subject.new(name: "Arquitectura de Negocio & Estrategia de T
     before { @subject.credits = -1 }
     it { should_not be_valid }
   end
+  
+  
+ describe "when code is already taken" do
+    before do
+      subject_with_same_code = @subject.dup
+      subject_with_same_code.code = @subject.code.upcase
+      subject_with_same_code.save
+    end
+
+    it { should_not be_valid }
+  end
 end
