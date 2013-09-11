@@ -8,11 +8,25 @@
 
 <br/>
 <br/>
-<% @program_semester.each do |ps|%>
-	<%=form_for(@ps) do |program| %>
-		<%= render 'shared/error_messages' %>
-	<%end %>
-<% end %>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+
+	</ul>
+	<% @program_semester.each do |ps|%>
+		<%=form_for(@ps) do |program| %>
+			<%= render 'shared/error_messages' %>
+		<%end %>
+	<% end %>	
+
+	<div>
+
+	</div>
+
+</div>
+
+
+
+
 <%if @program_semester.empty?%>
 	<h4>No existe un semestre activo!</h4>
 <% end %>

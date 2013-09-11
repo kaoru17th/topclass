@@ -4,4 +4,7 @@ class Semester < ActiveRecord::Base
   validates :startdate, presence: true
   validates :finaldate, presence: true
   validates :status, presence: true
+
+  has_many :program_semesters
+  has_many :programs , :through => :program_semesters
 end
