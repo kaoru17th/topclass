@@ -6,4 +6,5 @@ FactoryGirl.define do
     startdate "2014-01-01"
     finaldate "2014-05-01"
     status "Activo"
+  end
 end

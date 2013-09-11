@@ -16,7 +16,7 @@ describe UserProgram do
   it { should respond_to(:user) }
   its(:user) { should eq user }
   it { should respond_to(:program) }
-  its(:program) { should eq user }
+  its(:program) { should eq program }
 
   it { should be_valid }
 

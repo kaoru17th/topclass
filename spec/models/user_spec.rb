@@ -148,10 +148,10 @@ describe User do
 
     before { @user.save }
     let!(:newer_user_programs) do
-      FactoryGirl.create(:user_programs, user: @user)
+      FactoryGirl.create(:user_program, user: @user)
     end
 
-    it "should have the right microposts in the right order" do
+    it "should have the right user_programs" do
       expect(@user.user_programs.to_a).to eq [newer_user_programs]
     end
   end
