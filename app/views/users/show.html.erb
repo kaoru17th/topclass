@@ -10,6 +10,15 @@
 <%= @user.code %>, <%= @user.identificationtype %>, <%= @user.identification %>, <%= @user.status %>, <%= @user.usertype %>, <%= @user.email %>
     </section>
   </aside>
+    <div class="span8">
+    <% if @user.programs.any? %>
+      <h3>Programs</h3>
+      <ol class="programs">
+        <%= render @programs %>
+      </ol>
+      <%= will_paginate @programs %>
+    <% end %>
+  </div>
 </div>
 
 

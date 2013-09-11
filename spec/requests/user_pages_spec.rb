@@ -64,10 +64,18 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:program) { FactoryGirl.create(:program) }
+    let!(:newer_user_programs) {FactoryGirl.create(:user_program, user: user, program: program)}    
     before { visit user_path(user) }
 
     it { should have_content(user.firstname) }
     it { should have_title(user.firstname) }
+    
+    describe "programs" do
+      it { should have_content(newer_user_programs.status) }
+      it { should have_content(user.microposts.count) }
+    end
+    
   end
 
   describe "newuser page" do

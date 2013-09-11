@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     else
       
       @user = User.find(params[:id])
+      @programs = @user.programs.paginate(page: params[:page])
     end
   end
   

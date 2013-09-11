@@ -147,13 +147,17 @@ describe User do
     describe "programs associations" do
 
     before { @user.save }
+    let(:program) { FactoryGirl.create(:program) }
+    
     let!(:newer_user_programs) do
-      FactoryGirl.create(:user_program, user: @user)
+      FactoryGirl.create(:user_program, user: @user, program: program)
     end
 
     it "should have the right user_programs" do
       expect(@user.user_programs.to_a).to eq [newer_user_programs]
     end
+        
+    
   end
   
 end

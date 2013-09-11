@@ -58,5 +58,9 @@ namespace :db do
     ProgramSemester.delete_all
     
     ProgramSemester.create!(program_id: "1", semester_id: "1", status: "Activo")
+    
+    UserProgram.delete_all
+    
+    UserProgram.create!(program_id: "1", user_id: "1", status: "Activo")
   end
 end
