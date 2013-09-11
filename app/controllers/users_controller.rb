@@ -28,6 +28,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    
     if @user.save
+          params[:programs].each do |program|
+            user_programs = UserProgram.new(program_id: program, user_id: @user.id, status: "Activo")
+            if user_programs.valid?
+              user_programs.save
+            else
+              flash.now[:error] = 'Cant save user program'
+              #@errors += user_programs.errors
+            end 
+        end
+      
+      
       flash[:success] = "Usuario Creado con Exito"
       redirect_to @user
     else
@@ -61,8 +72,9 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:firstname,:lastname,:code,:identificationtype,:identification,:status,:usertype, :email, :password,
-                                   :password_confirmation)
+      params.require(:user).permit(:firstname,:lastname,:code,:identificationtype,:identification,:status,:usertype, :email, 
+      :password,:password_confirmation)
+      #params.require(:user).permit!
     end
     
         # Before filters
@@ -78,4 +90,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+    
+
 end
