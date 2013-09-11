@@ -15,6 +15,8 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:email) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:programs) }
+  it { should respond_to(:user_programs) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -139,6 +141,18 @@ describe User do
 
       it { should_not eq user_for_invalid_password }
       specify { expect(user_for_invalid_password).to be_false }
+    end
+  end
+  
+    describe "programs associations" do
+
+    before { @user.save }
+    let!(:newer_user_programs) do
+      FactoryGirl.create(:user_programs, user: @user)
+    end
+
+    it "should have the right microposts in the right order" do
+      expect(@user.user_programs.to_a).to eq [newer_user_programs]
     end
   end
   

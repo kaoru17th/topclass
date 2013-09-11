@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :semester do
-    name "MyString"
+    name "2014-01"
     startdate "2014-01-01"
     finaldate "2014-05-01"
-    status "MyString"
-  end
+    status "Activo"
 end

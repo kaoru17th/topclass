@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :user_program do
-    user_id 1
-    program_id 1
-    status "MyString"
+    user
+    program
+    status "Activo"
   end
 end

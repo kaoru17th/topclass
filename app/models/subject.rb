@@ -7,4 +7,13 @@ class Subject < ActiveRecord::Base
   validates :quota, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :credits, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :status, presence: true
+  
+  has_many :teacher_subjects
+  has_many :users, :through => :teacher_subjects
+  
+  has_many :subject_semesters
+  has_many :semesters , :through => :subject_semesters
+  
+  has_many :subject_programs
+  has_many :programs, :through => :subject_programs
 end

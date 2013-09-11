@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :program do
-    name "MyString"
-    code "MyString"
+    name "Maestría en Arquitectura de Tecnologías de Información"
+    code "SNIES 101531"
     objective "MyString"
-    status "MyString"
+    status "Activo"
   end
 end

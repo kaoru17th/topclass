@@ -8,4 +8,8 @@ class Semester < ActiveRecord::Base
 
   has_many :program_semesters
   has_many :programs , :through => :program_semesters
+  
+  has_many :subject_semesters
+  has_many :subjects , :through => :subject_semesters
+  
 end

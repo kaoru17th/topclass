@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :subject do
-    name "MyString"
-    code "MyString"
+    name "Arquitectura de Negocio & Estrategia de TI"
+    code "ARTI-4103"
     quota 1
     credits 1
-    status "MyString"
+    status "Activo"
   end
 end
