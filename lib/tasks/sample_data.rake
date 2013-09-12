@@ -57,7 +57,7 @@ namespace :db do
     
     QuotaConfig.delete_all
     
-    QuotaConfig.create!(subject_id: "1", own_quota: "50", program_quota:"30", pregrade_quota:"20" , status: "Activo")
+    QuotaConfig.create!(subject_id: "1", own_quota: "50", program_quota:"30", pregrade_quota:"20")
     
     
     #Poblar Program Semester con toda la info
@@ -79,11 +79,11 @@ namespace :db do
     
     SubjectRecord.delete_all
     
-    SubjectRecord.create!(user_id_student: "1", semester_id: "1", subject_id: "1" ,user_id_teacher: "1", status: "Passed", grade: 3.5)
+    SubjectRecord.create!(user_student_id: "1", semester_id: "1", subject_id: "1" ,user_teacher_id: "1", status: "Passed", grade: 3.5)
     
     PreregisterSubject.delete_all
     
-    PreregisterSubject.create!(user_id_student: "1", semester_id: "1", subject_id: "1" , status: "Activa")
+    PreregisterSubject.create!(user_id: "1", semester_id: "1", subject_id: "1" , status: "Activa")
     
   end
 end

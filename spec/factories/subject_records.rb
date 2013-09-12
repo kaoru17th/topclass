@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :subject_record do
-    semester_id 1
-    user_id_student 1
-    subject_id 1
+    semester
+    user
+    subject
     user_id_teacher 1
     grade 1.5
     status "MyString"

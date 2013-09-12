@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910210516) do
+ActiveRecord::Schema.define(version: 20130912204542) do
 
   create_table "preregister_subjects", force: true do |t|
     t.integer  "semester_id"
     t.integer  "subject_id"
-    t.integer  "user_id_student"
+    t.integer  "user_id"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(version: 20130910210516) do
 
   create_table "subject_records", force: true do |t|
     t.integer  "semester_id"
-    t.integer  "user_id_student"
+    t.integer  "user_student_id"
     t.integer  "subject_id"
-    t.integer  "user_id_teacher"
+    t.integer  "user_teacher_id"
     t.float    "grade"
     t.string   "status"
     t.datetime "created_at"

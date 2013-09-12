@@ -4,7 +4,7 @@ class PreregisterSubject < ActiveRecord::Base
     belongs_to :semester
     
     
-    validates :user_id_student, presence: true
+    validates :user_id, presence: true
     validates :semester_id, presence: true
     validates :status, presence: true
     validates :subject_id, presence: true

@@ -15,7 +15,8 @@ module SessionsHelper
   
   def current_user
     userid = session[:remember_token]
-    if !userid.nil?
+    @search = User.find_by_id(userid)
+    if !userid.nil? && !@search.nil?
       @current_user ||= User.find(userid)
     end
   end

@@ -18,6 +18,8 @@ class UsersController < ApplicationController
       
       @user = User.find(params[:id])
       @programs = @user.programs.paginate(page: params[:page])
+      @subject_records = @user.subject_records.paginate(page: params[:page])
+      @preregister_subjects = @user.preregister_subjects.paginate(page: params[:page])
     end
   end
   

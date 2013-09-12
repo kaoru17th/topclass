@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :semester do
-    name "2014-01"
+    sequence(:name) { |n| "2014-01#{n}"}
     startdate "2014-01-01"
     finaldate "2014-05-01"
     status "Activo"

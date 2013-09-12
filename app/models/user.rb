@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :subjects, :through => :teacher_subjects
   
   
-  has_many :subject_records
-  has_many :preregister_records   
+  has_many :subject_records, :class_name => 'SubjectRecord', :foreign_key => 'user_student_id'
+  has_many :preregister_subjects
   
 end

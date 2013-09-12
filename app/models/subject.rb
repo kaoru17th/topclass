@@ -1,5 +1,4 @@
 class Subject < ActiveRecord::Base
-  
   before_save { self.code = code.upcase }
    
   validates :name, presence: true, length: { maximum: 200 }

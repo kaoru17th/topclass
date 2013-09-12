@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :quota_config do
-    subject_id 1
+    subject
     own_quota 1
     program_quota 1
     pregrade_quota 1
