@@ -20,5 +20,26 @@
     <% end %>
   </div>
 </div>
-
+<div class="row">
+    <div class="span8">
+    <% if @user.subject_records.any? %>
+      <h3>Materias</h3>
+      <ol class="programs">
+        <%= render @subject_records %>
+      </ol>
+      <%= will_paginate @subject_records %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+    <div class="span8">
+    <% if @user.preregister_records.any? %>
+      <h3>Presinscritas</h3>
+      <ol class="programs">
+        <%= render @preregister_records %>
+      </ol>
+      <%= will_paginate @preregister_records %>
+    <% end %>
+  </div>
+</div>
 

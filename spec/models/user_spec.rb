@@ -17,6 +17,8 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:programs) }
   it { should respond_to(:user_programs) }
+  it { should respond_to(:subject_records) }
+  it { should respond_to(:preregister_records) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -159,5 +161,39 @@ describe User do
         
     
   end
+  
+  describe "subject_records associations" do
+
+    before { @user.save }
+
+    let!(:newer_subject_record) do
+      FactoryGirl.create(:subject_record, user: @user)
+    end
+
+    it "should have the right user_programs" do
+      expect(@user.subject_record.to_a).to eq [newer_subject_record]
+    end
+        
+    
+  end
+  
+      describe "programs associations" do
+
+    before { @user.save }
+    let(:program) { FactoryGirl.create(:program) }
+    
+    let!(:newer_user_programs) do
+      FactoryGirl.create(:user_program, user: @user, program: program)
+    end
+
+    it "should have the right user_programs" do
+      expect(@user.user_programs.to_a).to eq [newer_user_programs]
+    end
+        
+    
+  end
+  
+  
+  
   
 end

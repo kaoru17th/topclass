@@ -2,22 +2,6 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
-    User.delete_all
-
-    User.create!(firstname: "Diego", lastname:"Gonzalez", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Estudiante", password:"test12345", password_confirmation: "test12345", email:"da.gonzalez13@uniandes.edu.co")
-    User.create!(firstname: "Admin", lastname:"Admin", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Coordinador", password:"test12345", password_confirmation: "test12345", email:"da.gonzalez14@uniandes.edu.co")
-    User.create!(firstname: "Profesor", lastname:"Profesor", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Profesor", password:"test12345", password_confirmation: "test12345", email:"da.gonzalez15@uniandes.edu.co")
-    99.times do |n|
-      firstname  = Faker::Name.first_name
-      lastname = Faker::Name.last_name
-      code = Faker::Address.zip_code
-      identification = Faker::Address.zip_code
-      email = "example-#{n+1}@uniandes.edu.co"
-      password  = "password"
-      User.create!(firstname: firstname, lastname:lastname, code:code, 
-      identificationtype:"CC", identification:identification, status:"Activo", 
-      usertype:"Estudiante", password:password, password_confirmation:password, email:email)
-    end
 
     Program.delete_all
 
@@ -54,6 +38,28 @@ namespace :db do
     Semester.create!(name: "2014-02", status:"Activo",startdate:"2014-06-01", finaldate:"2014-07-31")
     Semester.create!(name: "2014-03", status:"Activo",startdate:"2014-08-01", finaldate:"2014-11-31")
     
+    User.delete_all
+
+    User.create!(firstname: "Diego", lastname:"Gonzalez", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Estudiante", password:"test12345", password_confirmation: "test12345", email:"da.gonzalez13@uniandes.edu.co")
+    User.create!(firstname: "Admin", lastname:"Admin", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Coordinador", password:"test12345", password_confirmation: "test12345", email:"da.gonzalez14@uniandes.edu.co")
+    User.create!(firstname: "Profesor", lastname:"Profesor", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Profesor", password:"test12345", password_confirmation: "test12345", email:"da.gonzalez15@uniandes.edu.co")
+    99.times do |n|
+      firstname  = Faker::Name.first_name
+      lastname = Faker::Name.last_name
+      code = Faker::Address.zip_code
+      identification = Faker::Address.zip_code
+      email = "example-#{n+1}@uniandes.edu.co"
+      password  = "password"
+      User.create!(firstname: firstname, lastname:lastname, code:code, 
+      identificationtype:"CC", identification:identification, status:"Activo", 
+      usertype:"Estudiante", password:password, password_confirmation:password, email:email)
+    end
+    
+    QuotaConfig.delete_all
+    
+    QuotaConfig.create!(subject_id: "1", own_quota: "50", program_quota:"30", pregrade_quota:"20" , status: "Activo")
+    
+    
     #Poblar Program Semester con toda la info
     ProgramSemester.delete_all
     
@@ -62,5 +68,22 @@ namespace :db do
     UserProgram.delete_all
     
     UserProgram.create!(program_id: "1", user_id: "1", status: "Activo")
+    
+    SubjectProgram.delete_all
+    
+    SubjectProgram.create!(subject_id:"1", program_id: "1", status:"Activo", subjecttype:"Obligatoria")
+    
+    SubjectSemester.delete_all
+    
+    SubjectSemester.create!(subject_id:"1", semester_id: "1", status:"Activo")
+    
+    SubjectRecord.delete_all
+    
+    SubjectRecord.create!(user_id_student: "1", semester_id: "1", subject_id: "1" ,user_id_teacher: "1", status: "Passed", grade: 3.5)
+    
+    PreregisterSubject.delete_all
+    
+    PreregisterSubject.create!(user_id_student: "1", semester_id: "1", subject_id: "1" , status: "Activa")
+    
   end
 end
