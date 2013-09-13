@@ -6,6 +6,6 @@
                                   data: { confirm: "You sure?" } %>
    <% end %>
      <% if  @user.preregister_subjects.count < 10 %>
-      | <%= link_to "New Preregister Subject", preregister_subject_path(:user_id =>@user.id,:program_id =>program.id), method: :get %>
+      | <%= link_to "New Preregister Subject", new_preregister_subject_path(:user_id =>@user.id,:program_id =>program.id), method: :get %>
    <% end %>
 </li>

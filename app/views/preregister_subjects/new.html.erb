@@ -1,2 +1,23 @@
-<h1>PreregisterSubjects#new</h1>
-<p>Find me in app/views/preregister_subjects/new.html.erb</p>
+<% provide(:title, 'New Preregister Subject') %>
+<h1>New Preregister Subject</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @preregister_subject do |f| %>
+
+
+
+     <%= label_tag "Subject" %>
+     <%= select_tag "subject_id", options_from_collection_for_select(@subjects, 'id', 'name') %>
+     
+     <%= label_tag "Semester" %>
+     <%= select_tag "semester_id", options_from_collection_for_select(@semesters, 'id', 'name') %>
+
+      <%= f.label :status %>
+     <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
+      
+     <%= hidden_field_tag "user_id", @user_id %>  
+
+      <%= f.submit "Save Preregister Subject", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

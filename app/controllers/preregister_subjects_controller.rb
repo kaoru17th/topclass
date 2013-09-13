@@ -1,5 +1,18 @@
 class PreregisterSubjectsController < ApplicationController
   def new
+    @preregister_subject = PreregisterSubject.new(user_id: params[:user_id])
+    @subjects = Program.find_by_id(params[:program_id]).subjects 
+    @semesters = Program.find_by_id(params[:program_id]).semesters
+    @user_id = params[:user_id]
+  end
+  
+  def create
+    @preregister_subject = PreregisterSubject.new(user_id: params[:user_id], semester_id: params[:semester_id], subject_id: params[:subject_id],status: preregister_subject_params[:status])  
+    if @preregister_subject.save      
+      flash[:success] = "Materia registrada con Exito"
+      @user = User.find_by_id(@preregister_subject.user_id)
+      redirect_to @user
+    end
   end
   
   def update
@@ -68,9 +81,9 @@ class PreregisterSubjectsController < ApplicationController
   
   private
 
-    def preregister_subject_params
+   def preregister_subject_params
       params.require(:preregister_subject).permit(:user_id,:status,:semester_id,:subject_id)
       #params.require(:user).permit!
-    end
+   end
   
 end
