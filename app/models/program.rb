@@ -7,7 +7,7 @@ class Program < ActiveRecord::Base
   validates :status, presence: true
 
   has_many :program_semesters
-  has_many :semester, :through => :program_semesters
+  has_many :semesters, :through => :program_semesters
   
   has_many :user_programs
   has_many :users, :through => :user_programs

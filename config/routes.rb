@@ -1,5 +1,7 @@
 Topclass::Application.routes.draw do
+  get "preregister_subjects/new"
 resources :users
+resources :preregister_subjects
 resources :sessions, only: [:new, :create, :destroy]
 root  'static_pages#home'
 match '/newuser',  to: 'users#new',  via: 'get'

@@ -73,7 +73,7 @@ describe "User pages" do
     
     describe "programs" do
       it { should have_content(newer_user_programs.status) }
-      it { should have_content(user.microposts.count) }
+      it { should have_content(user.user_program.count) }
     end
     
   end

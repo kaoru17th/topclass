@@ -5,11 +5,11 @@ namespace :db do
 
     Program.delete_all
 
-    Program.create!(name: "Maestría en Arquitectura de Tecnologías de Información", code:"SNIES 101531", objective:"Las tecnologías de información (TI) se han convertido en el motor de las organizaciones, apoyando tanto su operación como la toma estratégica de decisiones de negocio", status:"Activo")
-    Program.create!(name: "Maestría en Ingeniería de Sistemas y Computación", code:"SNIES 1579", objective:"Conscientes de la evolución de la informática y su rol e impacto en el mundo actual, el Departamento de Ingeniería de Sistemas y Computación presenta un programa de Maestría alrededor de temáticas de punta como Computación Visual, Cloud Computing, Big Data, Gestión de Conocimiento y Computación Móvil.", status:"Activo")
+    Program.create!(name: "Maestría en Arquitectura de Tecnologías de Información", code:"SNIES 101531", objective:"Las tecnologías de información (TI) se han convertido en el motor de las organizaciones", status:"Activo")
+    Program.create!(name: "Maestría en Ingeniería de Sistemas y Computación", code:"SNIES 1579", objective:"Conscientes de la evolución de la informática y su rol e impacto en el mundo actual", status:"Activo")
     Program.create!(name: "Maestría en Ingeniería de Software", code:"SNIES 102073", objective:"A nivel mundial, la industria de software es crítica para el crecimiento económico y la innovación", status:"Activo")
-    Program.create!(name: "Maestría en Seguridad de la Información", code:"SNIES 102074", objective:"La sociedad depende del manejo apropiado de la información y de las tecnologías y herramientas que permiten acceder a ella", status:"Activo")
-    Program.create!(name: "Maestría en Tecnologías de Información para el Negocio", code:"SNIES 102269", objective:"En los últimos años, las Tecnologías de Información (TI) han desbordado su papel tradicional de servir de soporte para las labores administrativas y operativas de la empresa, y se han convertido en un elemento crucial para la competitividad, el crecimiento y la internacionalización", status:"Activo")
+    Program.create!(name: "Maestría en Seguridad de la Información", code:"SNIES 102074", objective:"La sociedad depende del manejo apropiado de la información y de las tecnologías", status:"Activo")
+    Program.create!(name: "Maestría en Tecnologías de Información para el Negocio", code:"SNIES 102269", objective:"En los últimos años, las Tecnologías de Información (TI)", status:"Activo")
     
     Subject.delete_all
 
@@ -37,6 +37,9 @@ namespace :db do
     Semester.create!(name: "2014-01", status:"Activo",startdate:"2014-01-01", finaldate:"2014-05-31")
     Semester.create!(name: "2014-02", status:"Activo",startdate:"2014-06-01", finaldate:"2014-07-31")
     Semester.create!(name: "2014-03", status:"Activo",startdate:"2014-08-01", finaldate:"2014-11-31")
+    Semester.create!(name: "2015-01", status:"Activo",startdate:"2015-01-01", finaldate:"2015-05-31")
+    Semester.create!(name: "2015-02", status:"Activo",startdate:"2015-06-01", finaldate:"2015-07-31")
+    Semester.create!(name: "2015-03", status:"Activo",startdate:"2015-08-01", finaldate:"2015-11-31")
     
     User.delete_all
 
@@ -64,6 +67,12 @@ namespace :db do
     ProgramSemester.delete_all
     
     ProgramSemester.create!(program_id: "1", semester_id: "1", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "2", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "3", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "4", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "5", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "6", status: "Activo")
+
     
     UserProgram.delete_all
     
@@ -71,7 +80,23 @@ namespace :db do
     
     SubjectProgram.delete_all
     
-    SubjectProgram.create!(subject_id:"1", program_id: "1", status:"Activo", subjecttype:"Obligatoria")
+    SubjectProgram.create!(subject_id:"1", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"2", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"3", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"4", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"5", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"6", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"7", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"8", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"9", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"10", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"12", program_id: "1", status:"Activo", subjecttype:"Electiva")
+    SubjectProgram.create!(subject_id:"13", program_id: "1", status:"Activo", subjecttype:"Electiva")
+    SubjectProgram.create!(subject_id:"14", program_id: "1", status:"Activo", subjecttype:"Electiva")
+    SubjectProgram.create!(subject_id:"15", program_id: "1", status:"Activo", subjecttype:"Electiva")
+    SubjectProgram.create!(subject_id:"16", program_id: "1", status:"Activo", subjecttype:"Electiva")
+    SubjectProgram.create!(subject_id:"11", program_id: "1", status:"Activo", subjecttype:"Obligatoria")
+    
     
     SubjectSemester.delete_all
     
@@ -79,11 +104,11 @@ namespace :db do
     
     SubjectRecord.delete_all
     
-    SubjectRecord.create!(user_student_id: "1", semester_id: "1", subject_id: "1" ,user_teacher_id: "1", status: "Passed", grade: 3.5)
+    #SubjectRecord.create!(user_student_id: "1", semester_id: "1", subject_id: "1" ,user_teacher_id: "1", status: "Passed", grade: 3.5)
     
     PreregisterSubject.delete_all
     
-    PreregisterSubject.create!(user_id: "1", semester_id: "1", subject_id: "1" , status: "Activa")
+    #PreregisterSubject.create!(user_id: "1", semester_id: "1", subject_id: "1" , status: "Activa")
     
   end
 end

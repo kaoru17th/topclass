@@ -1,4 +1,11 @@
 <li>
   <span class="content"><%= program.name %></span>
   <span class="content"><%= program.code %></span>
+  <% if !@user.subject_records.any? && !@user.preregister_subjects.any? %>
+      | <%= link_to "Automatic Preregister Subjects", preregister_subject_path(:automatic => 1,:user_id =>@user.id,:program_id =>program.id), method: :patch,
+                                  data: { confirm: "You sure?" } %>
+   <% end %>
+     <% if  @user.preregister_subjects.count < 10 %>
+      | <%= link_to "New Preregister Subject", preregister_subject_path(:user_id =>@user.id,:program_id =>program.id), method: :get %>
+   <% end %>
 </li>

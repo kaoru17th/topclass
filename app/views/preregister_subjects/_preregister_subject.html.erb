@@ -1,3 +1,9 @@
 <li>
-  <span class="content"><%= preregister_subject.semester.name %> <%= preregister_subject.subject.name %> <%= preregister_subject.status %></span>
+  <span class="content">
+  	<%= preregister_subject.semester.name %> <%= preregister_subject.subject.name %> <%= preregister_subject.status %>
+  	<% if current_user?(@user) %>
+    | <%= link_to "delete", preregister_subject, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
 </li>
