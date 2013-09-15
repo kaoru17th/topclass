@@ -12,6 +12,7 @@ match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 #Simulación nuevo semestre
 match '/new_semester', to: 'new_semester#index', via: 'get'
+match '/new_semester/new', to: 'new_semester#new', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -2,29 +2,47 @@
 <h2>Dashboard de coordinador</h2>
 
 <h3>Indicadores y metricas actuales del semestre:</h3>
-<br/>
-<br/>
-<h3>Semestre actual:</h3>
 
-<br/>
-<br/>
-<div class="tabbable">
-	<ul class="nav nav-tabs">
-
-	</ul>
-	<% @program_semester.each do |ps|%>
-		<%=form_for(@ps) do |program| %>
-			<%= render 'shared/error_messages' %>
-		<%end %>
-	<% end %>	
-
-	<div>
-
+<%if true then%>
+<div class ="row">	
+	<div class="alert alert-error alert-block">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <h4>Warning!</h4>
+	  Best check yo self, you're not...
 	</div>
-
 </div>
+<% end %>
 
-
+<br/>
+<%=form_tag("/new_semester/new", method: "get", controller: "new_semester") do %>
+	<%= submit_tag("Simular nuevo semestre", class: "btn btn-large")%>
+<% end %>
+<br/>
+<div class="row">
+	<div class="tabbable tabs-left">
+		<div class="span2">
+			<ul class="nav nav-tabs">
+			<% @program_semester.each do |ps|%>
+				<li><a href="#tab<%=ps.program_id%>-<%=ps.semester_id%>" data-toggle="tab"><%= ps.program.name%>-<%= ps.semester.name%></a></li>
+			<% end %>	
+			</ul>
+		</div>
+		<div class="tab-content">
+			<% @program_semester.each do |ps|%>
+				<div class="tab-pane" id="tab<%=ps.program_id%>-<%=ps.semester_id%>">
+					<% ps.semester.subjects.each do |s|%>
+						<div class="border span3">
+							<h4><%=s.name%></h4>
+							Creditos de materia:<%=s.credits%><br/>
+							Cupos totales de materia:<%=s.quota%><br/>
+							Cupos Ocupados: <%=@subjects_hash[ps.semester_id.to_s + "-" + s.id.to_s]%><br/>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>	
+	</div>
+</div>
 
 
 <%if @program_semester.empty?%>
