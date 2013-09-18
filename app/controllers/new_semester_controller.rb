@@ -6,20 +6,25 @@ class NewSemesterController < ApplicationController
 
 
 		#Cargo toda la información de los programas y semestres
-		@program_semester=ProgramSemester.includes(:program, semester: :subjects).where("status='Activo'")
-
-		@pre_subjects=PreregisterSubject.includes(:subject).order(:created_at)
+		@program_semester=ProgramSemester.includes(:program,semester: :subjects,program: :subjects).where("status='Activo'")
+		#@subject_program= SubjectProgram.find(:all, :conditions =>"status = 'Activo'")
+		@pre_subjects=PreregisterSubject.includes(:subject, :semester).order(:created_at)
 
 		#Cargar La información de todas las personas que realizaron una preinscripcion
 		#program_semester_instance = Subject 
 		#ProgramSemester.includes(:program, semester: :subjects).where("status='Activo'").take
 		
-		#Contador de materias
+		#Contador hash de materias
 		@subjects_hash=Hash.new
+
+		#Variable hash para contabilizar las personas que se quedan sin clase 
+		@missing_from_subject=Hash.new
 
 		#Todas las materias deben tener un total
 		@pre_subjects.each do |pre_subject|
+
 		tmp_subject_id = pre_subject.semester_id.to_s + "-" + pre_subject.subject_id.to_s
+		tmp_subject_id_name = pre_subject.semester.name + "-" + pre_subject.subject_id.to_s + " "+pre_subject.subject.name
 
 
 		if @subjects_hash[tmp_subject_id] ==nil then
@@ -29,11 +34,16 @@ class NewSemesterController < ApplicationController
 			#REGLAS
 
 			#Curso lleno! Alarma
-			if pre_subject.subject.quota < @subjects_hash[tmp_subject_id] then
+			if pre_subject.subject.quota <= @subjects_hash[tmp_subject_id] then
 				#ALARMA
+				if @missing_from_subject[tmp_subject_id_name] ==nil then
+					@missing_from_subject[tmp_subject_id_name] = 0
+				end
+				@missing_from_subject[tmp_subject_id_name] += 1
 			else
 				@subjects_hash[tmp_subject_id] += 1
 			end
+
 		end
 	end
 
