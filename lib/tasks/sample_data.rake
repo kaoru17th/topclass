@@ -68,15 +68,16 @@ namespace :db do
     
     ProgramSemester.create!(program_id: "1", semester_id: "1", status: "Activo")
     ProgramSemester.create!(program_id: "1", semester_id: "2", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "3", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "4", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "5", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "6", status: "Activo")
+    
     
     ProgramSemester.create!(program_id: "2", semester_id: "1", status: "Activo")
     ProgramSemester.create!(program_id: "2", semester_id: "2", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "3", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "4", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "5", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "6", status: "Activo")
-
     
+
     UserProgram.delete_all
     
     UserProgram.create!(program_id: "1", user_id: "1", status: "Activo")
@@ -109,17 +110,31 @@ namespace :db do
     15.times do |n|
       SubjectProgram.create!(subject_id:"#{n+1}", program_id: "2", status:"Activo", subjecttype:"Opcional")
       SubjectSemester.create!(subject_id:"#{n+1}", semester_id: "2", status:"Activo")
-      
-      SubjectProgram.create!(subject_id:"#{n+1}", program_id: "1", status:"Activo", subjecttype:"Opcional")
-      SubjectSemester.create!(subject_id:"#{n+1}", semester_id: "1", status:"Activo")
     end
+    SubjectProgram.create!(subject_id:"13", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"14", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"15", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"16", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    SubjectProgram.create!(subject_id:"17", program_id: "1", status:"Activo", subjecttype:"Opcional")
+    
+    SubjectSemester.create!(subject_id:"13", semester_id: "1", status:"Activo")
+    SubjectSemester.create!(subject_id:"14", semester_id: "1", status:"Activo")
+    SubjectSemester.create!(subject_id:"15", semester_id: "1", status:"Activo")
+    SubjectSemester.create!(subject_id:"16", semester_id: "1", status:"Activo")
+    SubjectSemester.create!(subject_id:"17", semester_id: "1", status:"Activo")
+    
     40.times do |n|
-        PreregisterSubject.create!(semester_id:"1", subject_id: "11", user_id:"#{n+1}", status:"Activo")
+        PreregisterSubject.create!(semester_id:"1", subject_id: "14", user_id:"#{n+1}", status:"Activo")
         PreregisterSubject.create!(semester_id:"2", subject_id: "1", user_id:"#{n+1}", status:"Activo")
     end
     40.times do |n|
-        PreregisterSubject.create!(semester_id:"1", subject_id: "1", user_id:"#{n+1}", status:"Activo")
+        PreregisterSubject.create!(semester_id:"1", subject_id: "17", user_id:"#{n+1}", status:"Activo")
         PreregisterSubject.create!(semester_id:"2", subject_id: "11", user_id:"#{n+1}", status:"Activo")
+    end
+    
+    16.times do |n|
+        PreregisterSubject.create!(semester_id:"1", subject_id: "#{n+1}", user_id:"#{n+1}", status:"Activo")
+        PreregisterSubject.create!(semester_id:"2", subject_id: "#{n+1}", user_id:"#{n+1}", status:"Activo")
     end
     
     #SubjectSemester.create!(subject_id:"1", semester_id: "1", status:"Activo")
