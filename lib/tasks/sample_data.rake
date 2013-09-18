@@ -68,10 +68,13 @@ namespace :db do
     
     ProgramSemester.create!(program_id: "1", semester_id: "1", status: "Activo")
     ProgramSemester.create!(program_id: "1", semester_id: "2", status: "Activo")
-    ProgramSemester.create!(program_id: "1", semester_id: "3", status: "Activo")
-    ProgramSemester.create!(program_id: "1", semester_id: "4", status: "Activo")
-    ProgramSemester.create!(program_id: "1", semester_id: "5", status: "Activo")
-    ProgramSemester.create!(program_id: "1", semester_id: "6", status: "Activo")
+    
+    ProgramSemester.create!(program_id: "2", semester_id: "1", status: "Activo")
+    ProgramSemester.create!(program_id: "2", semester_id: "2", status: "Activo")
+    #ProgramSemester.create!(program_id: "1", semester_id: "3", status: "Activo")
+    #ProgramSemester.create!(program_id: "1", semester_id: "4", status: "Activo")
+    #ProgramSemester.create!(program_id: "1", semester_id: "5", status: "Activo")
+    #ProgramSemester.create!(program_id: "1", semester_id: "6", status: "Activo")
 
     
     UserProgram.delete_all
@@ -99,14 +102,26 @@ namespace :db do
     
     
     SubjectSemester.delete_all
-    
-    SubjectSemester.create!(subject_id:"1", semester_id: "1", status:"Activo")
-    
+    PreregisterSubject.delete_all
     SubjectRecord.delete_all
     
-    #SubjectRecord.create!(user_student_id: "1", semester_id: "1", subject_id: "1" ,user_teacher_id: "1", status: "Passed", grade: 3.5)
+    #JULIAN POBLAR
+    15.times do |n|
+      SubjectProgram.create!(subject_id:"#{n+1}", program_id: "2", status:"Activo", subjecttype:"Opcional")
+      SubjectSemester.create!(subject_id:"#{n+1}", semester_id: "2", status:"Activo")
+    end
+    40.times do |n|
+        PreregisterSubject.create!(semester_id:"1", subject_id: "11", user_id:"#{n+1}", status:"Activo")
+        PreregisterSubject.create!(semester_id:"2", subject_id: "1", user_id:"#{n+1}", status:"Activo")
+    end
+    40.times do |n|
+        PreregisterSubject.create!(semester_id:"1", subject_id: "1", user_id:"#{n+1}", status:"Activo")
+        PreregisterSubject.create!(semester_id:"2", subject_id: "11", user_id:"#{n+1}", status:"Activo")
+    end
     
-    PreregisterSubject.delete_all
+    #SubjectSemester.create!(subject_id:"1", semester_id: "1", status:"Activo")
+    
+    #SubjectRecord.create!(user_student_id: "1", semester_id: "1", subject_id: "1" ,user_teacher_id: "1", status: "Passed", grade: 3.5)
     
     #PreregisterSubject.create!(user_id: "1", semester_id: "1", subject_id: "1" , status: "Activa")
     
