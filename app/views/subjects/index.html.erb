@@ -1,0 +1,40 @@
+<% provide(:title, 'All subjects') %>
+
+<h1>All subjects</h1>
+<p align="center"><%= link_to "New Subject", new_subject_path, :class => 'btn btn-primary'  %></p>
+<%= will_paginate %>
+<ul class="subjects">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Quota</th>
+      <th>Credits</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.id %></td>
+          <td><%= subject.code %></td>
+        <td><%= link_to subject.name, subject_path(subject) %></td>
+          <td><%= subject.quota %></td>
+          <td><%= subject.credits %></td>
+        <td><%= subject.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_subject_path(subject), :class => 'btn btn-mini' %>
+          <%= link_to 'Delete', subject_path(subject), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</ul>
+<%= will_paginate %>
+<p align="center"><%= link_to "New Subject", new_subject_path, :class => 'btn btn-primary'  %></p>
+
+

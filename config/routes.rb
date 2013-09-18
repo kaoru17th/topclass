@@ -1,8 +1,9 @@
 Topclass::Application.routes.draw do
-  get "preregister_subjects/new"
+  #get "preregister_subjects/new"
 resources :users
 resources :preregister_subjects
 resources :sessions, only: [:new, :create, :destroy]
+  
 root  'static_pages#home'
 match '/newuser',  to: 'users#new',  via: 'get'
 match '/help', to: 'static_pages#help', via: 'get'
@@ -13,6 +14,15 @@ match '/signout', to: 'sessions#destroy',     via: 'delete'
 #Simulación nuevo semestre
 match '/new_semester', to: 'new_semester#index', via: 'get'
 
+  #CRUD subjects
+resources :subjects
+  match '/new_subject',  to: 'subjects#new',  via: 'get'
+  match '/list_subject',  to: 'subjects#index',  via: 'get'
+
+# CRUD programs
+  resources :programs
+  match '/list_registered', to: 'programs#showSubjectList', via: 'get'
+  match '/list_program',  to: 'programs#index',  via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
