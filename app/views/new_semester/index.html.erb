@@ -1,30 +1,51 @@
 <% provide(:title, 'View Semestre') %>
 <h2>Dashboard de coordinador</h2>
-
-<h3>Indicadores y metricas actuales del semestre:</h3>
 <br/>
+<%#-=form_tag("/new_semester/new", method: "get", controller: "new_semester") do -%>
+	<%#-= submit_tag("Simular nuevo semestre", class: "btn btn-large")-%>
+<%# end -%>
 <br/>
-<h3>Semestre actual:</h3>
 
-<br/>
-<br/>
-<div class="tabbable">
-	<ul class="nav nav-tabs">
-
-	</ul>
-	<% @program_semester.each do |ps|%>
-		<%=form_for(@ps) do |program| %>
-			<%= render 'shared/error_messages' %>
-		<%end %>
-	<% end %>	
-
-	<div>
-
-	</div>
-
+<div class="row">
+	<h3>Indicadores y metricas actuales del semestre:</h3>
+	<% @missing_from_subject.each do |mfs_id , mfs_value|%>
+		<div class"span6">	
+			<div class="alert alert-error alert-block">		
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<%=mfs_id%> tiene sobrecupo de <%=mfs_value%> estudiantes
+			</div>
+		</div>
+	<% end %>
 </div>
 
 
+<div class="row">
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+		<% @program_semester.each do |ps|%>
+			<li><a href="#tab<%=ps.program_id%>-<%=ps.semester_id%>" data-toggle="tab"><%= ps.program.name%>-<%= ps.semester.name%></a></li>
+		<% end %>	
+		</ul>
+		
+		<div class="tab-content">			
+			<% @program_semester.each do |ps|%>
+				<div class="tab-pane" id="tab<%=ps.program_id%>-<%=ps.semester_id%>">
+					<% ps.semester.subjects.each do |s|%>
+						<%#-Condicional para que solo muestre las materias de cada programa TODO: CAMBIAR PORQUE ES MUY FEO-%>
+						<%if ps.program.subjects.exists?(s.id) then %>
+							<div class="<%=@missing_from_subject_color[ps.semester_id.to_s + '-' + s.id.to_s]%>">
+								<h5><%=s.name%></h5>
+								Creditos de materia: <%=s.credits%><br/>
+								Cupos totales de materia: <%=s.quota%><br/>
+								Cupos Ocupados: <%=@subjects_hash[ps.semester_id.to_s + "-" + s.id.to_s]%>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>	
+	</div>
+</div>
 
 
 <%if @program_semester.empty?%>

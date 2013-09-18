@@ -1,5 +1,15 @@
 Topclass::Application.routes.draw do
+<<<<<<< HEAD
   #get "preregister_subjects/new"
+=======
+  get "programs/new"
+  get "programs/index"
+  get "programs/show"
+  get "semesters/new"
+  get "semesters/index"
+  get "semesters/show"
+#  get "preregister_subjects/new"
+>>>>>>> f12bb65e4220439f5de1c076a8ddff6744cb0e75
 resources :users
 resources :preregister_subjects
 resources :sessions, only: [:new, :create, :destroy]
@@ -13,6 +23,7 @@ match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 #Simulación nuevo semestre
 match '/new_semester', to: 'new_semester#index', via: 'get'
+match '/new_semester/new', to: 'new_semester#new', via: 'get'
 
   #CRUD subjects
 resources :subjects
