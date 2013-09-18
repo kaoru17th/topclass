@@ -1,5 +1,12 @@
 Topclass::Application.routes.draw do
 
+<<<<<<< HEAD
+=======
+  get "semesters/new"
+  get "semesters/index"
+  get "semesters/show"
+#  get "preregister_subjects/new"
+>>>>>>> ebc8bbf15720e203562094ed98dd6ce24e8f2315
 resources :users
 resources :preregister_subjects
 resources :sessions, only: [:new, :create, :destroy]
