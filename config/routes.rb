@@ -1,4 +1,10 @@
 Topclass::Application.routes.draw do
+  get "programs/new"
+  get "programs/index"
+  get "programs/show"
+  get "semesters/new"
+  get "semesters/index"
+  get "semesters/show"
 #  get "preregister_subjects/new"
 resources :users
 resources :preregister_subjects

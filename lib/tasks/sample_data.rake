@@ -69,12 +69,13 @@ namespace :db do
     ProgramSemester.create!(program_id: "1", semester_id: "1", status: "Activo")
     ProgramSemester.create!(program_id: "1", semester_id: "2", status: "Activo")
     
+    
     ProgramSemester.create!(program_id: "2", semester_id: "1", status: "Activo")
     ProgramSemester.create!(program_id: "2", semester_id: "2", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "3", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "4", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "5", status: "Activo")
-    #ProgramSemester.create!(program_id: "1", semester_id: "6", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "3", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "4", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "5", status: "Activo")
+    ProgramSemester.create!(program_id: "1", semester_id: "6", status: "Activo")
 
     
     UserProgram.delete_all
