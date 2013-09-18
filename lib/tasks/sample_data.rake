@@ -109,6 +109,9 @@ namespace :db do
     15.times do |n|
       SubjectProgram.create!(subject_id:"#{n+1}", program_id: "2", status:"Activo", subjecttype:"Opcional")
       SubjectSemester.create!(subject_id:"#{n+1}", semester_id: "2", status:"Activo")
+      
+      SubjectProgram.create!(subject_id:"#{n+1}", program_id: "1", status:"Activo", subjecttype:"Opcional")
+      SubjectSemester.create!(subject_id:"#{n+1}", semester_id: "1", status:"Activo")
     end
     40.times do |n|
         PreregisterSubject.create!(semester_id:"1", subject_id: "11", user_id:"#{n+1}", status:"Activo")
