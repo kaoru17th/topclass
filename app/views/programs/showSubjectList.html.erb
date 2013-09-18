@@ -1,0 +1,32 @@
+<% provide(:title, 'All Subjects by Program') %>
+
+<h1>All Subjects by Program</h1>
+
+<ul class="subjects">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ID Subject</th>
+      <th>Subject Name</th>
+      <th>Quota</th>
+      <th>Preinscription</th>
+      <th>Percentaje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.idSubject %></td>
+        <td><%= subject.codeSubject %></td>
+        <td><%= subject.subjectName %></td>
+        <td><%= subject.subjectQuota %></td>
+        <td><%= subject.preregisterCount %></td>
+        <td><%= subject.percentaje  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</ul>
+
+<p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>

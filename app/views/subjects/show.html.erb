@@ -1,0 +1,24 @@
+<% provide(:title, 'Show Subject') %>
+<h1>Detail Subject</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+<%= form_for(@subject) do |f| %>
+      <%= f.label :code %> 
+      <%= @subject.code %>
+      
+      <%= f.label :name %>
+      <%= @subject.name %>
+      
+      <%= f.label :quota %>
+     <%= @subject.quota %>
+      
+      <%= f.label :credits %>
+      <%= @subject.credits %>
+      
+      <%= f.label :status %>
+      <%= if @subject.status then "Activo" else "Inactivo" end %>
+    <%end%>
+  </div>
+</div>
+ <p align="center"><%= link_to "Go Back", list_subject_path, :class => 'btn' %> </p>
