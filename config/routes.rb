@@ -1,5 +1,5 @@
 Topclass::Application.routes.draw do
-  get "preregister_subjects/new"
+#  get "preregister_subjects/new"
 resources :users
 resources :preregister_subjects
 resources :sessions, only: [:new, :create, :destroy]

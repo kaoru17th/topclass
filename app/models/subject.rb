@@ -17,4 +17,6 @@ class Subject < ActiveRecord::Base
   has_many :programs, :through => :subject_programs
   
   has_one :quota_config
+  
+  has_many :subject_records
 end
