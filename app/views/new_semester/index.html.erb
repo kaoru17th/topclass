@@ -33,7 +33,7 @@
 					<% ps.semester.subjects.each do |s|%>
 						<%#-Condicional para que solo muestre las materias de cada programa TODO: CAMBIAR PORQUE ES MUY FEO-%>
 						<%if ps.program.subjects.exists?(s.id) then %>
-							<div class="border span5">
+							<div class="<%=@missing_from_subject_color[ps.semester_id.to_s + '-' + s.id.to_s]%>">
 								<h5><%=s.name%></h5>
 								Creditos de materia: <%=s.credits%><br/>
 								Cupos totales de materia: <%=s.quota%><br/>
