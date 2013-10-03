@@ -30,6 +30,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    
     if @user.save
+      
+              # Tell the UserMailer to send a welcome Email after save
+        UserMailer.welcome_email(@user).deliver
+       
+      
           params[:programs].each do |program|
             user_programs = UserProgram.new(program_id: program, user_id: @user.id, status: "Activo")
             if user_programs.valid?
