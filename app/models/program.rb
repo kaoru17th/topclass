@@ -14,5 +14,7 @@ class Program < ActiveRecord::Base
   
   has_many :subject_programs
   has_many :subjects, :through => :subject_programs
+  
+  belongs_to :user
 
 end

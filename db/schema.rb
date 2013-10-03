@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130912204542) do
+ActiveRecord::Schema.define(version: 20131003160329) do
 
   create_table "preregister_subjects", force: true do |t|
     t.integer  "semester_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20130912204542) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "programs", ["code"], name: "index_programs_on_code", unique: true

@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   has_many :subject_records, :class_name => 'SubjectRecord', :foreign_key => 'user_student_id'
   has_many :preregister_subjects
   
+  has_one :program
+  
+  
+  
 end

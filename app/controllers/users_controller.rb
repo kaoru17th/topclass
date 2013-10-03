@@ -54,10 +54,27 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = User.find(params[:id])   
+    @programs = @user.programs
+    @programs_ids=Array.new(@programs.count)
+    @programs.each do |program|
+      @programs_ids.push(program.id)
+    end
   end
   
   def update
+      @user = User.find(params[:id])  
       if @user.update_attributes(user_params)
+        
+            params[:programs].each do |program|
+            user_programs = UserProgram.new(program_id: program, user_id: @user.id, status: "Activo")
+            if user_programs.valid?
+              user_programs.save
+            else
+              flash.now[:error] = 'Cant save user program'
+              #@errors += user_programs.errors
+            end 
+        end
         flash[:success] = "Info updated"
         sign_in @user
         redirect_to @user

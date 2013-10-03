@@ -34,6 +34,9 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
+      
+           <%= f.label :programs %>
+     <%= select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name',  {selected: @programs_ids,disabled: @programs_ids}), :multiple => true %>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
