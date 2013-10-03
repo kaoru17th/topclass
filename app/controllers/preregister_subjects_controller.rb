@@ -1,7 +1,18 @@
 class PreregisterSubjectsController < ApplicationController
   def new
     @preregister_subject = PreregisterSubject.new(user_id: params[:user_id])
-    @subjects = Program.find_by_id(params[:program_id]).subjects 
+    @subjects = Program.find_by_id(params[:program_id]).subjects.compact
+
+    
+    @pregistered_subjects = PreregisterSubject.where(user_id: params[:user_id])
+    
+    @pregistered_subjects.each do |pregistered_subject|
+        @subject = Subject.find_by_id(pregistered_subject.subject_id)
+        @subjects.delete(@subject)
+
+    end
+
+     
     @semesters = Program.find_by_id(params[:program_id]).semesters
     @user_id = params[:user_id]
     @program_id = params[:program_id]
@@ -47,7 +58,7 @@ class PreregisterSubjectsController < ApplicationController
          
          if(!@subjects_programs_required.nil?)
            if(!@subjects_programs_elective.nil?)
-              if(!@subjects_programs_elective.nil?)
+              if(!@@subjects_programs_optional.nil?)
                  k = -1
                  j = -1
                  for i in 0..5

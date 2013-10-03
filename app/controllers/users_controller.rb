@@ -14,7 +14,7 @@ class UsersController < ApplicationController
          @user.update_attribute(:status, "Activo")
          flash[:success] = "Usuario habilitado"
       end
-    else
+    else 
       
       @user = User.find(params[:id])
       @programs = @user.programs.paginate(page: params[:page])
