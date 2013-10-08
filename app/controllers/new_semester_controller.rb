@@ -59,7 +59,8 @@ class NewSemesterController < ApplicationController
   #Busqueda de estudiantes de ultimo semestre habilitados para el periodo actual
   #User.includes(:preregister_subjects).order("created_at desc").load.to_a
   #PreregisterSubject.includes(:subject, :semester,:user).order("user.created_at desc")            
- def last_semester_rule(idSubject)
+  
+  def users_in_subject_rule(idSubject)
    #Usuarios registrados por cada materia y ordenados por antiguedad para garantizar los cupos
    #Listos para ser listados!
    @users_per_subject= User.includes(:preregister_subjects).where(preregister_subjects: {subject_id: idSubject}).order("users.created_at desc").to_a
