@@ -37,7 +37,7 @@
 									Creditos de materia: <%=s.credits%><br/>
 									Cupos totales de materia: <%=s.quota%><br/>
 									Cupos Ocupados: <%=@subjects_hash[ps.semester_id.to_s + "-" + s.id.to_s]%><br/>
-                  <%= link_to "Info de las materias" , {:action => "users_in_subject_rule", :subjectId => s.id }, remote: true %>
+                  <%= link_to "Info de las materias" , {:action => "users_in_subject_rule", :subjectId => s.id } %>
 								</div>
 							<% end %>
 						<% end %>
