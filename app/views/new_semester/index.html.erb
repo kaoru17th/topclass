@@ -18,36 +18,36 @@
 	<% end %>
 </div>
 
-
-<div class="row">
-	<div class="tabbable">
-		<ul class="nav nav-tabs">
-		<% @program_semester.each do |ps|%>
-			<li><a href="#tab<%=ps.program_id%>-<%=ps.semester_id%>" data-toggle="tab"><%= ps.program.name%>-<%= ps.semester.name%></a></li>
-		<% end %>	
-		</ul>
-		
-		<div class="tab-content">			
+<%= form_tag new_semester_path, method: "get", controller: "new_semester" do %>
+	<div class="row">
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
 			<% @program_semester.each do |ps|%>
-				<div class="tab-pane" id="tab<%=ps.program_id%>-<%=ps.semester_id%>">
-					<% ps.semester.subjects.each do |s|%>
-						<%#-Condicional para que solo muestre las materias de cada programa TODO: CAMBIAR PORQUE ES MUY FEO-%>
-						<%if ps.program.subjects.exists?(s.id) then %>
-							<div class="<%=@missing_from_subject_color[ps.semester_id.to_s + '-' + s.id.to_s]%>">
-								<h5><%=s.name%></h5>
-								Creditos de materia: <%=s.credits%><br/>
-								Cupos totales de materia: <%=s.quota%><br/>
-								Cupos Ocupados: <%=@subjects_hash[ps.semester_id.to_s + "-" + s.id.to_s]%>
-							</div>
+				<li><a href="#tab<%=ps.program_id%>-<%=ps.semester_id%>" data-toggle="tab"><%= ps.program.name%>-<%= ps.semester.name%></a></li>
+			<% end %>	
+			</ul>
+			<div class="tab-content">			
+				<% @program_semester.each do |ps|%>
+					<div class="tab-pane" id="tab<%=ps.program_id%>-<%=ps.semester_id%>">
+						<% ps.semester.subjects.each do |s|%>
+							<%#-Condicional para que solo muestre las materias de cada programa TODO: CAMBIAR PORQUE ES MUY FEO-%>
+							<%if ps.program.subjects.exists?(s.id) then %>
+								<div class="<%=@missing_from_subject_color[ps.semester_id.to_s + '-' + s.id.to_s]%>">
+									<h5><%=s.name%></h5>
+									Creditos de materia: <%=s.credits%><br/>
+									Cupos totales de materia: <%=s.quota%><br/>
+									Cupos Ocupados: <%=@subjects_hash[ps.semester_id.to_s + "-" + s.id.to_s]%><br/>
+									<%= link_to "Info de las materias", {:action => "users_in_subject_rule", :subjectId => s.id } %>
+								</div>
+							<% end %>
 						<% end %>
-					<% end %>
-				</div>
-			<% end %>
-		</div>	
+					</div>
+				<% end %>
+			</div>	
+		</div>
 	</div>
-</div>
-
-
+<% end %>
+<% render object: @users_per_subject, partial: "users_per_subject"%>
 <%if @program_semester.empty?%>
 	<h4>No existe un semestre activo!</h4>
 <% end %>
