@@ -18,7 +18,7 @@
 	<% end %>
 </div>
 
-<%= form_tag new_semester_path, method: "get", controller: "new_semester" do %>
+<%= form_tag "new_semester_with_classes", method: "get", controller: "new_semester" do %>
 	<div class="row">
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
@@ -37,7 +37,7 @@
 									Creditos de materia: <%=s.credits%><br/>
 									Cupos totales de materia: <%=s.quota%><br/>
 									Cupos Ocupados: <%=@subjects_hash[ps.semester_id.to_s + "-" + s.id.to_s]%><br/>
-									<%= link_to "Info de las materias", {:action => "users_in_subject_rule", :subjectId => s.id } %>
+                  <%= link_to "Info de las materias" , {:action => "users_in_subject_rule", :subjectId => s.id }, remote: true %>
 								</div>
 							<% end %>
 						<% end %>
@@ -47,7 +47,33 @@
 		</div>
 	</div>
 <% end %>
-<% render object: @users_per_subject, partial: "users_per_subject"%>
+<%if @users_per_subject != nil then %>
+<%#- <% render partial: "users_per_subject", object: @users_per_subject%>
+  <div id="users_per_subject">
+  <h4>Estudiantes en el curso </h4>
+  <ul class="users_per_subject_ul">
+	<table class="table table-hover">
+		<thead>
+			<th>#</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Codigo</th>
+		</thead>
+		<tbody>
+      <%@users_per_subject.each do |user_subject|%>
+			<tr>
+					<td><%=user_subject.id %></td>
+					<td><%=user_subject.firstname%></td>
+					<td><%=user_subject.lastname%></td>
+					<td><%=user_subject.identification%></td>
+			</tr>
+      <% end %>
+		</tbody>
+	</table>
+  </ul>
+  <%= will_paginate @users_per_subject%>
+</div>
+<% end %>
 <%if @program_semester.empty?%>
 	<h4>No existe un semestre activo!</h4>
 <% end %>

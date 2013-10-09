@@ -3,15 +3,14 @@ class NewSemesterController < ApplicationController
 		#@program_semester= ProgramSemester.find(:all, :conditions =>"status = 'Activo'");
 		#@program_semester=Program_semester.find(params[:id])
 		#@subjects_semester=SubjectSemester.includes(:subject).where
-		if @users_per_subject == nil then
-			@users_per_subject= Array.new
-		end		
+		#if @users_per_subject == nil then
+		#	@users_per_subject= Array.new
+		#end		
 
 		#Cargo toda la información de los programas y semestres
 		@program_semester=ProgramSemester.includes(:program,semester: :subjects,program: :subjects).where("status='Activo'")
 		#@subject_program= SubjectProgram.find(:all, :conditions =>"status = 'Activo'")
-   
-    	#Materias ordenadas por orden de registro
+    #Materias ordenadas por orden de registro
 		@pre_subjects=PreregisterSubject.includes(:subject, :semester).order(:created_at)
 
 		#Cargar La información de todas las personas que realizaron una preinscripcion
@@ -20,10 +19,8 @@ class NewSemesterController < ApplicationController
 		
 		#Contador hash de materias
 		@subjects_hash=Hash.new
-
 		#Variable hash para contabilizar las personas que se quedan sin clase 
 		@missing_from_subject=Hash.new
-		
 		#Color
 		@missing_from_subject_color=Hash.new
 
@@ -66,9 +63,12 @@ class NewSemesterController < ApplicationController
    idSubject= params[:subjectId]
    #Usuarios registrados por cada materia y ordenados por antiguedad para garantizar los cupos
    #Listos para ser listados!
-   @users_per_subject= User.includes(:preregister_subjects).where(preregister_subjects: {subject_id: idSubject}).order("users.created_at desc").to_a
-   render "index"
-    
+    index
+    @users_per_subject= User.includes(:preregister_subjects)
+    .where(preregister_subjects: {subject_id: idSubject})
+    .order("users.created_at desc")
+    .paginate :page => params[:page], :per_page => 5
+    render "index"  
   end
 
 	def new
