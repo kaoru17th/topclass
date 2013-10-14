@@ -15,9 +15,4 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-$(function() {
-  $("#tab-content a").live("click", function() {
-    $.getScript(this.href);
-    return false;
-  });
-});}
+//= require_self
