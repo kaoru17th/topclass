@@ -18,7 +18,8 @@ class TeachersubjectsController < ApplicationController
   end
   
   def create
-    @teachersubject = TeacherSubject.new(teacher_subject_params)    
+    @teachersubject = TeacherSubject.new(teachersubject_params)    
+    render teachersubject_params
     if @teachersubject.save  
       flash[:success] = "Subject created sucesfull"
       redirect_to subjects_path
@@ -45,7 +46,7 @@ class TeachersubjectsController < ApplicationController
     end
   end
   
-    def teacher_subject_params
-      params.require(:teacher_subject).permit(:subject_id, :user_id, :status) 
+    def teachersubject_params
+      params.require(:teacher_subject).permit(:user_id, :subject_id) 
     end
 end
