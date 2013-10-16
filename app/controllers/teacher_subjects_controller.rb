@@ -46,7 +46,7 @@ class TeacherSubjectsController < ApplicationController
     end
   end
   
-    def teachersubject_params
+    def teacher_subject_params
       params.require(:teacher_subject).permit(:user_id, :subject_id) 
     end
 end
