@@ -14,6 +14,8 @@ class TeachersubjectsController < ApplicationController
   end  
   
   def new
+    @subjects = Subject.all
+    @teachers = User.where(usertype: 'Profesor')
     @teachersubject = TeacherSubject.new
   end
   
@@ -22,7 +24,7 @@ class TeachersubjectsController < ApplicationController
     render teachersubject_params
     if @teachersubject.save  
       flash[:success] = "Subject created sucesfull"
-      redirect_to subjects_path
+      redirect_to teachersubjects_path
     else
       flash[:fail] = "Fail Subject creation"
       render "new"

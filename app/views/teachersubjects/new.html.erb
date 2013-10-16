@@ -6,9 +6,11 @@
     
 
 
-    <%= form_for :teachersubject, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
-    <%= f.label :Subject %>  <%= collection_select(:subject_id, 0, Subject.all, :id, :name) %>
-    <%= f.label :Teacher %>  <%= collection_select(:user_id, 0, User.where(usertype: 'Profesor'), :id, :firstname) %>
+    <%= form_for @teachersubject, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+     
+
+    <%= f.label :Subject %>  <%= f.select(:subject_id, Subject.all.map {|lc| [lc.name]} ) %>
+    <%= f.label :Teacher %>  <%= f.select(:user_id, User.where(usertype: 'Profesor').map {|lc| [lc.lastname] } ) %> 
         <p align="center">
            <%= f.submit "Add new subject", class: "btn btn-primary" %> 
  <%= link_to "Go Back", list_teachersubjects_path, class: "btn" %> 

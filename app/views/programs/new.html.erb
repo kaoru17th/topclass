@@ -1,0 +1,31 @@
+<% provide(:title, 'Create Program') %>
+<h1>Create Program</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@program) do |f| %>
+     <%= render 'shared/subject_error_messages' %>
+
+      <%= f.label :code %>
+      <%= f.text_field :code %>
+      
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      
+      <%= f.label :quota %>
+      <%= f.text_field :quota %>
+      
+      <%= f.label :credits %>
+      <%= f.text_field :credits %>
+      
+      <%= f.label :status %>
+     <%=f.select(:status,options_for_select([["Activo", "true"], ["Inactivo", "false"]]))%>   
+     
+    
+    <p align="center">
+      <%= f.submit "Add new subject", class: "btn btn-primary" %> 
+     <%= link_to "Go Back", list_subject_path, class: "btn" %> 
+    </p> 
+      
+    <% end %>
+  </div>
+</div>
