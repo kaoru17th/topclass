@@ -14,21 +14,18 @@ class TeacherSubjectsController < ApplicationController
   end  
   
   def new
-<<<<<<< HEAD:app/controllers/teachersubjects_controller.rb
     @subjects = Subject.all
     @teachers = User.where(usertype: 'Profesor')
     @teachersubject = TeacherSubject.new
-=======
     @teacher_subject = TeacherSubject.new
->>>>>>> cbe770c6dc510dd468bb3e26fcca7b7ad92b5d77:app/controllers/teacher_subjects_controller.rb
   end
   
   def create
-    @teacher_subject = TeacherSubject.new(teacher_subject_params)    
+    #@teacher_subject = TeacherSubject.new(teacher_subject_params)
+    @teacher_subject = TeacherSubject.create :user_id => 10, :subject_id => 7 , :status => "true"
     if @teacher_subject.save  
-
       flash[:success] = "Subject created sucesfull"
-      redirect_to teachersubjects_path
+      redirect_to teacher_subjects_path
     else
       flash[:fail] = "Fail Subject creation"
       render "new"
@@ -53,6 +50,6 @@ class TeacherSubjectsController < ApplicationController
   end
   
     def teacher_subject_params
-      params.require(:teacher_subject).permit(:user_id, :subject_id) 
+      params.require(:teacher_subject).permit(:user_id, :subject_id, :status) 
     end
 end
