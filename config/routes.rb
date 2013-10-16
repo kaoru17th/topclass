@@ -33,9 +33,9 @@ resources :subjects
   match '/list_program',  to: 'programs#index',  via: 'get'
   
 # Teacher subject
-  resources :teachersubjects
-  match '/new_teachersubjects',  to: 'teachersubjects#new',  via: 'get'
-  match '/list_teachersubjects',  to: 'teachersubjects#index',  via: 'get'
+  resources :teacher_subjects
+  match '/new_teacher_subjects',  to: 'teacher_subjects#new',  via: 'get'
+  match '/list_teacher_subjects',  to: 'teacher_subjects#index',  via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

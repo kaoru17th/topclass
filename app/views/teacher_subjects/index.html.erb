@@ -1,6 +1,6 @@
 <% provide(:title, 'Subjects By Teacher') %>
 <h1>Subjects By Teacher</h1>
-<p align="center"><%= link_to "New Assignation", new_teachersubject_path, :class => 'btn btn-primary'  %></p> 
+<p align="center"><%= link_to "New Assignation", new_teacher_subject_path, :class => 'btn btn-primary'  %></p> 
 
 <%= will_paginate %>
 <ul class="subjects">
@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @teachersubjects .each do |subject| %>
+    <% @teacher_subjects .each do |subject| %>
              <tr>
         <td><%= subject.id %></td>
           <td><%= subject.subject.code %></td>
@@ -34,4 +34,4 @@
 </ul>
 <%= will_paginate %>
 
-<p align="center"><%= link_to "New Assignation", new_teachersubject_path, :class => 'btn btn-primary'  %></p> 
+<p align="center"><%= link_to "New Assignation", new_teacher_subject_path, :class => 'btn btn-primary'  %></p> 

@@ -1,12 +1,12 @@
-class TeachersubjectsController < ApplicationController
+class TeacherSubjectsController < ApplicationController
   def index
-    @teachersubjects = TeacherSubject.paginate(page: params[:page])
-    @teachersubject = TeacherSubject.new 
+    @teacher_subjects = TeacherSubject.paginate(page: params[:page])
+    @teacher_subject = TeacherSubject.new 
   end
   
   def show
-    @teachersubject = TeacherSubject.find(params[:id])
-    if @teachersubject.status == "true" 
+    @teacher_subject = TeacherSubject.find(params[:id])
+    if @teacher_subject.status == "true" 
       flash[:success] = "TeacherSubject enable"
     else
       flash[:fail] = "TeacherSubject disabled"
@@ -14,12 +14,12 @@ class TeachersubjectsController < ApplicationController
   end  
   
   def new
-    @teachersubject = TeacherSubject.new
+    @teacher_subject = TeacherSubject.new
   end
   
   def create
-    @teachersubject = TeacherSubject.new(teacher_subject_params)    
-    if @teachersubject.save  
+    @teacher_subject = TeacherSubject.new(teacher_subject_params)    
+    if @teacher_subject.save  
       flash[:success] = "Subject created sucesfull"
       redirect_to subjects_path
     else
@@ -35,8 +35,8 @@ class TeachersubjectsController < ApplicationController
   end
   
   def destroy
-        @teachersubject = TeacherSubject.find_by_id(params[:id])
-    if @teachersubject.destroy
+        @teacher_subject = TeacherSubject.find_by_id(params[:id])
+    if @teacher_subject.destroy
       flash[:success] = "teachersubject was destroyed." 
       redirect_to subjects_path
     else
