@@ -1,12 +1,12 @@
-class TeachersubjectsController < ApplicationController
+class TeacherSubjectsController < ApplicationController
   def index
-    @teachersubjects = TeacherSubject.paginate(page: params[:page])
-    @teachersubject = TeacherSubject.new 
+    @teacher_subjects = TeacherSubject.paginate(page: params[:page])
+    @teacher_subject = TeacherSubject.new 
   end
   
   def show
-    @teachersubject = TeacherSubject.find(params[:id])
-    if @teachersubject.status == "true" 
+    @teacher_subject = TeacherSubject.find(params[:id])
+    if @teacher_subject.status == "true" 
       flash[:success] = "TeacherSubject enable"
     else
       flash[:fail] = "TeacherSubject disabled"
@@ -14,15 +14,19 @@ class TeachersubjectsController < ApplicationController
   end  
   
   def new
+<<<<<<< HEAD:app/controllers/teachersubjects_controller.rb
     @subjects = Subject.all
     @teachers = User.where(usertype: 'Profesor')
     @teachersubject = TeacherSubject.new
+=======
+    @teacher_subject = TeacherSubject.new
+>>>>>>> cbe770c6dc510dd468bb3e26fcca7b7ad92b5d77:app/controllers/teacher_subjects_controller.rb
   end
   
   def create
-    @teachersubject = TeacherSubject.new(teachersubject_params)    
-    render teachersubject_params
-    if @teachersubject.save  
+    @teacher_subject = TeacherSubject.new(teacher_subject_params)    
+    if @teacher_subject.save  
+
       flash[:success] = "Subject created sucesfull"
       redirect_to teachersubjects_path
     else
@@ -38,8 +42,8 @@ class TeachersubjectsController < ApplicationController
   end
   
   def destroy
-        @teachersubject = TeacherSubject.find_by_id(params[:id])
-    if @teachersubject.destroy
+        @teacher_subject = TeacherSubject.find_by_id(params[:id])
+    if @teacher_subject.destroy
       flash[:success] = "teachersubject was destroyed." 
       redirect_to subjects_path
     else
@@ -48,7 +52,7 @@ class TeachersubjectsController < ApplicationController
     end
   end
   
-    def teachersubject_params
+    def teacher_subject_params
       params.require(:teacher_subject).permit(:user_id, :subject_id) 
     end
 end

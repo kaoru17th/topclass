@@ -77,7 +77,7 @@ $(function () {
                 <%@preregister_subjects_hash.each do |subject, value|%> 
                       {
                       name: '<%=subject%>',
-                      data: [<%=value%>]
+                      data: [<%=value%>,<%=value%>]
                       },                 
                  <% end %>
                     ]
