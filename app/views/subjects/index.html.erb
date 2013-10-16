@@ -1,7 +1,7 @@
 <% provide(:title, 'All subjects') %>
-
 <h1>All subjects</h1>
-<p align="center"><%= link_to "New Subject", new_subject_path, :class => 'btn btn-primary'  %></p>
+<p align="center"><%= link_to "New Subject", new_subject_path, :class => 'btn btn-primary'  %></p> 
+
 <%= will_paginate %>
 <ul class="subjects">
   <table class="table table-striped">
@@ -27,7 +27,10 @@
         <td><%= subject.created_at %></td>
         <td>
           <%= link_to 'Edit', edit_subject_path(subject), :class => 'btn btn-mini' %>
+          <%= link_to 'Disable', disable_path(subject), :class => 'btn btn-mini' %>
           <%= link_to 'Delete', subject_path(subject), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          
+  
         </td>
       </tr>
     <% end %>
@@ -36,5 +39,3 @@
 </ul>
 <%= will_paginate %>
 <p align="center"><%= link_to "New Subject", new_subject_path, :class => 'btn btn-primary'  %></p>
-
-

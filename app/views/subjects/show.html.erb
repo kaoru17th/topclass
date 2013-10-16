@@ -3,6 +3,7 @@
 
 <div class="row">
   <div class="span6 offset3">
+       
 <%= form_for(@subject) do |f| %>
       <%= f.label :code %> 
       <%= @subject.code %>
@@ -17,7 +18,7 @@
       <%= @subject.credits %>
       
       <%= f.label :status %>
-      <%= if @subject.status then "Activo" else "Inactivo" end %>
+      <%= if @subject.status == "true" then "Activo" else "Inactivo" end %>
     <%end%>
   </div>
 </div>

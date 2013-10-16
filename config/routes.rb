@@ -22,11 +22,17 @@ match '/new_semester', to: 'new_semester#index', via: 'get'
 resources :subjects
   match '/new_subject',  to: 'subjects#new',  via: 'get'
   match '/list_subject',  to: 'subjects#index',  via: 'get'
-
+  match '/disable', to: 'subjects#disable', :as => 'disable', via: 'get'
+  
 # CRUD programs
   resources :programs
   match '/list_registered', to: 'programs#showSubjectList', via: 'get'
   match '/list_program',  to: 'programs#index',  via: 'get'
+  
+# Teacher subject
+  resources :teachersubjects
+  match '/new_teachersubjects',  to: 'teachersubjects#new',  via: 'get'
+  match '/list_teachersubjects',  to: 'teachersubjects#index',  via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

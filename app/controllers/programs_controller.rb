@@ -5,7 +5,7 @@ class ProgramsController < ApplicationController
   end
   
   def showSubjectList
-    @subjects = Program.find_by_sql("select p.id idProgram, s.id idSubject, s.code codeSubject, s.name subjectName, s.quota subjectQuota, count(ps.subject_id) preregisterCount, ((count(ps.subject_id)*100/s.quota) || '%') percentaje  from programs p, subject_programs sp, subjects s, preregister_subjects ps where p.id = sp.program_id and sp.subject_id = s.id and s.id = ps.subject_id group by ps.subject_id, p.id, s.id, s.code, s.name, s.quota;")
+    @subjects = Program.find_by_sql("select p.id idProgram, s.id idSubject, s.code codeSubject, s.name subjectName, s.quota subjectQuota, count(ps.subject_id) as preregisterCount, ((count(ps.subject_id)*100/s.quota) || '%') percentaje  from programs p, subject_programs sp, subjects s, preregister_subjects ps where p.id = sp.program_id and sp.subject_id = s.id and s.id = ps.subject_id group by ps.subject_id, p.id, s.id, s.code, s.name, s.quota;")
   end
   
   def show
