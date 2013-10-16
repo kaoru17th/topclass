@@ -79,8 +79,27 @@ namespace :db do
 
     UserProgram.delete_all
     
-    UserProgram.create!(program_id: "1", user_id: "1", status: "Activo")
-    
+
+    50.times do |n|
+        UserProgram.create!(program_id: "1", user_id: "#{n+1}", status: "Activo")
+    end
+
+    30.times do |n|
+        UserProgram.create!(program_id: "2", user_id: "#{n+1}", status: "Activo")
+    end
+
+    25.times do |n|
+        UserProgram.create!(program_id: "3", user_id: "#{n+1}", status: "Activo")
+    end
+
+    40.times do |n|
+        UserProgram.create!(program_id: "4", user_id: "#{n+1}", status: "Activo")
+    end
+
+    60.times do |n|
+        UserProgram.create!(program_id: "5", user_id: "#{n+1}", status: "Activo")
+    end
+
     SubjectProgram.delete_all
     
     SubjectProgram.create!(subject_id:"1", program_id: "1", status:"Activo", subjecttype:"Opcional")

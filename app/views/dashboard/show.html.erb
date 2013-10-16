@@ -1,0 +1,46 @@
+<% provide(:title, 'View Semester') %>
+<script type="text/javascript">
+$(function () {
+    $('#pie_alumnos_por_maestria').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Total alumnos por maestria en TopClass'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    crop:'true'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Porcentaje de alumnos',
+            data: [
+            <%@students_per_program.each do |name, quantity|%>
+            	['<%=name.sub(/Maestría en/,'')%>', <%=quantity.to_f%>],
+            <% end %>
+            ]
+        }]
+    });
+});
+</script>
+
+<h2>Dashboard de coordinador</h2>
+<%= link_to "Ver Semestres en curso", new_semester_path , class: "btn btn-default pull-left" %>
+<br/>
+<br/>
+<div id="pie_alumnos_por_maestria" class="pie_chart" />

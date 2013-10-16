@@ -16,7 +16,10 @@ match '/signin',  to: 'sessions#new',         via: 'get'
 match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 #Simulación nuevo semestre
-match '/new_semester', to: 'new_semester#index', via: 'get'
+  match '/new_semester', to: 'new_semester#index', via: 'get'
+  match '/new_semester_with_classes', to: 'new_semester#users_in_subject_rule', via: 'get'
+#Dashboard
+  match '/dashboard', to: 'dashboard#show', via: 'get'
 
   #CRUD subjects
 resources :subjects
