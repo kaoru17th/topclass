@@ -16,6 +16,7 @@
      <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
       
      <%= hidden_field_tag "user_id", @user_id %>  
+     <%= hidden_field_tag "program_id", @program_id %>  
 
       <%= f.submit "Save Preregister Subject", class: "btn btn-large btn-primary" %>
     <% end %>

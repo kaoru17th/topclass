@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20131016184308) do
+=======
+ActiveRecord::Schema.define(version: 20131003160329) do
+>>>>>>> cb4fb19d4523850ef6f9a3b9ef9318218cb17ddb
 
   create_table "preregister_subjects", force: true do |t|
     t.integer  "semester_id"
@@ -37,6 +41,10 @@ ActiveRecord::Schema.define(version: 20131016184308) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
+=======
+    t.integer  "user_id"
+>>>>>>> cb4fb19d4523850ef6f9a3b9ef9318218cb17ddb
   end
 
   add_index "programs", ["code"], name: "index_programs_on_code", unique: true
@@ -109,11 +117,14 @@ ActiveRecord::Schema.define(version: 20131016184308) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "teachers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> cb4fb19d4523850ef6f9a3b9ef9318218cb17ddb
   create_table "user_programs", force: true do |t|
     t.integer  "user_id"
     t.integer  "program_id"

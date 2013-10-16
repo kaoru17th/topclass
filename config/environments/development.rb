@@ -15,7 +15,7 @@ Topclass::Application.configure do
   config.action_controller.permit_all_parameters = true
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -28,4 +28,14 @@ Topclass::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   
+  
+  config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',#'pod51019.outlook.com',
+  port:                 587,
+  domain:               'gmail.com',#'uniandes.edu.co',
+  user_name:            'kaoru17th@gmail.com',#'da.gonzalez13@uniandes.edu.co',
+  password:             'rana1831*',
+  authentication:       'plain',
+  enable_starttls_auto: true  }
 end

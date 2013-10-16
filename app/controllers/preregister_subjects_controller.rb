@@ -1,18 +1,45 @@
 class PreregisterSubjectsController < ApplicationController
   def new
     @preregister_subject = PreregisterSubject.new(user_id: params[:user_id])
-    @subjects = Program.find_by_id(params[:program_id]).subjects 
+    @subjects = Program.find_by_id(params[:program_id]).subjects.compact
+
+    
+    @pregistered_subjects = PreregisterSubject.where(user_id: params[:user_id])
+    
+    @pregistered_subjects.each do |pregistered_subject|
+        @subject = Subject.find_by_id(pregistered_subject.subject_id)
+        @subjects.delete(@subject)
+
+    end
+
+     
     @semesters = Program.find_by_id(params[:program_id]).semesters
     @user_id = params[:user_id]
+    @program_id = params[:program_id]
   end
   
   def create
-    @preregister_subject = PreregisterSubject.new(user_id: params[:user_id], semester_id: params[:semester_id], subject_id: params[:subject_id],status: preregister_subject_params[:status])  
-    if @preregister_subject.save      
-      flash[:success] = "Materia registrada con Exito"
-      @user = User.find_by_id(@preregister_subject.user_id)
-      redirect_to @user
+    
+
+    @user = User.find_by_id(params[:user_id])
+    if(!PreregisterSubject.where(user_id: params[:user_id],subject_id: params[:subject_id]).exists?)
+      @preregister_subject = PreregisterSubject.new(user_id: params[:user_id], semester_id: params[:semester_id], subject_id: params[:subject_id],status: preregister_subject_params[:status])  
+      if @preregister_subject.save   
+        @preregister_subject_total = PreregisterSubject.where(semester_id: params[:semester_id],subject_id: params[:subject_id])
+        if(@preregister_subject_total.exists?)
+          #flash[:success] = @preregister_subject_total.count
+          @subject = Subject.find_by_id(params[:subject_id])
+          if(@preregister_subject_total.count > @subject.quota)
+            #flash[:success] = Program.find_by_id(params[:program_id]).user.firstname
+            UserMailer.notification_quota_email(params[:program_id],@preregister_subject).deliver
+          end
+        end     
+        flash[:success] = "Materia registrada con Exito"
+      end
+    else
+       flash[:error] = 'La materia ya esta preinscrita'
     end
+    redirect_to @user
   end
   
   def update
@@ -31,7 +58,7 @@ class PreregisterSubjectsController < ApplicationController
          
          if(!@subjects_programs_required.nil?)
            if(!@subjects_programs_elective.nil?)
-              if(!@subjects_programs_elective.nil?)
+              if(!@@subjects_programs_optional.nil?)
                  k = -1
                  j = -1
                  for i in 0..5

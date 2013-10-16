@@ -8,6 +8,10 @@ module SessionsHelper
   def signed_in?
     !current_user.nil?
   end
+  
+  def admin?
+    current_user.usertype == "Coordinador"
+  end
 
   def current_user=(user)
     @current_user = user
@@ -30,7 +34,7 @@ module SessionsHelper
     session.delete(:remember_token)
   end
   
-    def redirect_back_or(default)
+  def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)
   end

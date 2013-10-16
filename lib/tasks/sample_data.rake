@@ -2,14 +2,13 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
-
     Program.delete_all
 
-    Program.create!(name: "Maestría en Arquitectura de Tecnologías de Información", code:"SNIES 101531", objective:"Las tecnologías de información (TI) se han convertido en el motor de las organizaciones", status:"Activo")
-    Program.create!(name: "Maestría en Ingeniería de Sistemas y Computación", code:"SNIES 1579", objective:"Conscientes de la evolución de la informática y su rol e impacto en el mundo actual", status:"Activo")
-    Program.create!(name: "Maestría en Ingeniería de Software", code:"SNIES 102073", objective:"A nivel mundial, la industria de software es crítica para el crecimiento económico y la innovación", status:"Activo")
-    Program.create!(name: "Maestría en Seguridad de la Información", code:"SNIES 102074", objective:"La sociedad depende del manejo apropiado de la información y de las tecnologías", status:"Activo")
-    Program.create!(name: "Maestría en Tecnologías de Información para el Negocio", code:"SNIES 102269", objective:"En los últimos años, las Tecnologías de Información (TI)", status:"Activo")
+    Program.create!(name: "Maestría en Arquitectura de Tecnologías de Información", code:"SNIES 101531", objective:"Las tecnologías de información (TI) se han convertido en el motor de las organizaciones", status:"Activo",user_id:2)
+    Program.create!(name: "Maestría en Ingeniería de Sistemas y Computación", code:"SNIES 1579", objective:"Conscientes de la evolución de la informática y su rol e impacto en el mundo actual", status:"Activo",user_id:2)
+    Program.create!(name: "Maestría en Ingeniería de Software", code:"SNIES 102073", objective:"A nivel mundial, la industria de software es crítica para el crecimiento económico y la innovación", status:"Activo",user_id:2)
+    Program.create!(name: "Maestría en Seguridad de la Información", code:"SNIES 102074", objective:"La sociedad depende del manejo apropiado de la información y de las tecnologías", status:"Activo",user_id:2)
+    Program.create!(name: "Maestría en Tecnologías de Información para el Negocio", code:"SNIES 102269", objective:"En los últimos años, las Tecnologías de Información (TI)", status:"Activo",user_id:2)
     
     Subject.delete_all
 
@@ -80,8 +79,27 @@ namespace :db do
 
     UserProgram.delete_all
     
-    UserProgram.create!(program_id: "1", user_id: "1", status: "Activo")
-    
+
+    50.times do |n|
+        UserProgram.create!(program_id: "1", user_id: "#{n+1}", status: "Activo")
+    end
+
+    30.times do |n|
+        UserProgram.create!(program_id: "2", user_id: "#{n+1}", status: "Activo")
+    end
+
+    25.times do |n|
+        UserProgram.create!(program_id: "3", user_id: "#{n+1}", status: "Activo")
+    end
+
+    40.times do |n|
+        UserProgram.create!(program_id: "4", user_id: "#{n+1}", status: "Activo")
+    end
+
+    60.times do |n|
+        UserProgram.create!(program_id: "5", user_id: "#{n+1}", status: "Activo")
+    end
+
     SubjectProgram.delete_all
     
     SubjectProgram.create!(subject_id:"1", program_id: "1", status:"Activo", subjecttype:"Opcional")
