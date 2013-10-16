@@ -4,9 +4,11 @@
 
 <ul class="subjects">
   <%= p_fieldset('default',legend: 'All Subjects by Program',style: 'margin-bottom:10px') do %>  
+  <p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
   <p>You can order the column making click </p>
-  <%= p_datatable('tbl',columns: @subject_columns,datasource: @subjects,rowkey: 'id',caption: 'All Subjects by Program',paginator: { rows: 20 },selectionMode: 'single' ) %>    
+  <%= p_datatable('tbl',columns: @subject_columns,datasource: @subjects,rowkey: 'id',caption: 'All Subjects by Program',paginator: { rows: 20 },selectionMode: 'single' ) %>   
+  <p></p>
+  <p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
   <% end %> 
 </ul>
 
-<p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
