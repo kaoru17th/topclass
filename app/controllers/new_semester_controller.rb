@@ -70,10 +70,6 @@ class NewSemesterController < ApplicationController
     .paginate :page => params[:page], :per_page => 5
     render "index"  
   end
-  #METODO PARA LA CARGA DE LOS CHARTS DEL DASHBOARD PRINCIPAL DE LA PANTALLA DE ADMON
-  def chart
-    
-  end
 
 	def new
 		#LOGICA DE CARGA DE SEMESTRE NUEVO
