@@ -21,8 +21,8 @@ class TeacherSubjectsController < ApplicationController
   end
   
   def create
-    #@teacher_subject = TeacherSubject.new(teacher_subject_params)
-    @teacher_subject = TeacherSubject.create :user_id => 10, :subject_id => 7 , :status => "true"
+    @teacher_subject = TeacherSubject.new(teacher_subject_params)
+    @teacher_subject.status = true
     if @teacher_subject.save  
       flash[:success] = "Subject created sucesfull"
       redirect_to teacher_subjects_path
