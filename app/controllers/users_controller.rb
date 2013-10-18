@@ -8,11 +8,11 @@ class UsersController < ApplicationController
       if params[:disable] == "1"
          @user = User.find(params[:id])
          @user.update_attribute(:status, "Inactivo")
-         flash[:success] = "Usuario deshabilitado"
+         flash[:success] = I18n.t('usuario.deshabilitado') 
       else
          @user = User.find(params[:id])
          @user.update_attribute(:status, "Activo")
-         flash[:success] = "Usuario habilitado"
+         flash[:success] = I18n.t('usuario.habilitado')
       end
     else 
       
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
         end
       
       
-      flash[:success] = "Usuario Creado con Exito"
+      flash[:success] = I18n.t('usuario.crear.exito') 
       redirect_to @user
     else
       render 'new'
@@ -84,12 +84,12 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page]).per_page(10)
   end
   
  def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
+    flash[:success] = I18n.t('usuario.eliminado') 
     redirect_to users_url
   end
   
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
     def signed_in_user
       unless signed_in?
         store_location
-        redirect_to signin_url, notice: "Please sign in."
+        redirect_to signin_url, notice: "Por favor ingrese."
       end
     end
     

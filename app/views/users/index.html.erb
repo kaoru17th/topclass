@@ -1,8 +1,10 @@
-<% provide(:title, 'All users') %>
-<h1>All users</h1>
-<%= will_paginate %>
+<% provide(:title, 'Todos los usuarios') %>
+<h1>Todos los usuarios</h1>
+<%= will_paginate   %>
 <ul class="users">
-	<li><%= link_to "New User", newuser_path %></li>
+  <% if current_user.usertype.eql?("Coordinador") %>
+    <li><%= link_to "Nuevo usuario", newuser_path %></li>
+  <% end %>
   <%= render @users %>
 </ul>
-<%= will_paginate %>
+<%= will_paginate  %>

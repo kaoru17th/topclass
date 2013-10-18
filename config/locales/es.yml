@@ -1,0 +1,27 @@
+## YAML Template.
+---
+es:
+  delete: "Eliminar"
+  disable: "Inactivar"
+  enable: "Activar"
+  seguro: "¿Esta seguro de realizar esta acción?"
+  editar: "Editar"
+  usuario:
+    eliminado: "Usuario eliminado"
+    deshabilitado: "Usuario deshabilitado"
+    habilitado: "Usuario habilitado"
+    crear:
+      exito: "Usuario creado con éxito"
+      error: "Ocurrio un error al crear el usuario"
+  bienvenida:
+    mensaje: "Bienvenido al coordinador TopClass"
+  programas:
+    titulo: "Todos los programas"
+    nuevo: "Nuevo programa"
+    id: "ID"
+    codigo: "Código"
+    nombre: "Nombre"
+    objetivo: "Objetivo"
+    acciones: "Acciones"
+    registrados: "Registrados"
+    autoregistro: "Preregistro automatico"

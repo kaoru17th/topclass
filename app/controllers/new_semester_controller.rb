@@ -11,7 +11,7 @@ class NewSemesterController < ApplicationController
 		@program_semester=ProgramSemester.includes(:program,semester: :subjects,program: :subjects).where("status='Activo'")
 		#@subject_program= SubjectProgram.find(:all, :conditions =>"status = 'Activo'")
    
-    	#Materias ordenadas por orden de registro
+    #Materias ordenadas por orden de registro
 		@pre_subjects=PreregisterSubject.includes(:subject, :semester).order(:created_at)
 
 		#Cargar La información de todas las personas que realizaron una preinscripcion
@@ -31,18 +31,34 @@ class NewSemesterController < ApplicationController
 		@pre_subjects.each do |pre_subject|
 
       tmp_subject_id = pre_subject.semester_id.to_s + "-" + pre_subject.subject_id.to_s
-      tmp_subject_id_name = pre_subject.semester.name + "-" + pre_subject.subject_id.to_s + " "+pre_subject.subject.name
+      if pre_subject.semester ==nil then
+        tmp_sem_name = "Sin nombre semestre"
+      else
+        tmp_sem_name =pre_subject.semester.name
+      end
+      if pre_subject.subject ==nil then
+        tmp_sub_name = "Sin nombre materia"
+      else
+        tmp_sub_name =pre_subject.subject.name
+      end
+      
+      tmp_subject_id_name = tmp_sem_name + "-" + pre_subject.subject_id.to_s + " "+tmp_sub_name
   
   
       if @subjects_hash[tmp_subject_id] ==nil then
         @subjects_hash[tmp_subject_id] = 0
       end
-        #validación de reglas 
-        #REGLAS
+      #validación de reglas 
+      #REGLAS
   
       #Curso lleno! Alarma
-      if pre_subject.subject.quota <= @subjects_hash[tmp_subject_id] then
-          #ALARMA
+      if pre_subject.subject ==nil then
+        tmp_quota = 0
+      else
+        tmp_quota =pre_subject.subject.quota
+      end
+      if tmp_quota <= @subjects_hash[tmp_subject_id] then
+        #ALARMA
         if @missing_from_subject[tmp_subject_id_name] ==nil then
           @missing_from_subject[tmp_subject_id_name] = 0
         end
@@ -63,11 +79,11 @@ class NewSemesterController < ApplicationController
   #PreregisterSubject.includes(:subject, :semester,:user).order("user.created_at desc")            
   
   def users_in_subject_rule
-   idSubject= params[:subjectId]
-   #Usuarios registrados por cada materia y ordenados por antiguedad para garantizar los cupos
-   #Listos para ser listados!
-   @users_per_subject= User.includes(:preregister_subjects).where(preregister_subjects: {subject_id: idSubject}).order("users.created_at desc").to_a
-   render "index"
+    idSubject= params[:subjectId]
+    #Usuarios registrados por cada materia y ordenados por antiguedad para garantizar los cupos
+    #Listos para ser listados!
+    @users_per_subject= User.includes(:preregister_subjects).where(preregister_subjects: {subject_id: idSubject}).order("users.created_at desc").to_a
+    render "index"
     
   end
 

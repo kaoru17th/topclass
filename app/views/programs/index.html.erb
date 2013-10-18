@@ -1,17 +1,17 @@
-<% provide(:title, 'All programs') %>
+<% provide(:title, I18n.t('programas.titulo')) %>
 
-<h1>All programs</h1>
-<p align="center"><%= link_to "New Program", new_program_path, :class => 'btn btn-primary'  %></p>
+<h1><%= I18n.t('programas.titulo') %></h1>
+<p align="center"><%= link_to I18n.t('programas.nuevo'), new_program_path, :class => 'btn btn-primary'  %></p>
 <%= will_paginate %>
 <ul class="programs">
   <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Objetive</th>
-      <th>Actions</th>
+      <th><%= I18n.t('programas.id') %></th>
+      <th><%= I18n.t('programas.codigo') %></th>
+      <th><%= I18n.t('programas.nombre') %></th>
+      <th><%= I18n.t('programas.objetivo') %></th>
+      <th><%= I18n.t('programas.acciones') %></th>
     </tr>
   </thead>
   <tbody>
@@ -22,9 +22,9 @@
         <td><%= link_to program.name, program_path(program) %></td>
           <td><%= program.objective %></td>
         <td>
-          <%= link_to 'Registered', list_registered_path(program), :class => 'btn btn-mini' %>
-          <%= link_to 'Edit', edit_program_path(program), :class => 'btn btn-mini' %>
-          <%= link_to 'Delete', program_path(program), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to I18n.t('programas.registrados'), list_registered_path(program), :class => 'btn btn-mini' %>
+          <%= link_to I18n.t('editar'), edit_program_path(program), :class => 'btn btn-mini' %>
+          <%= link_to I18n.t('delete'), program_path(program), :method => :delete, :confirm => I18n.t('seguro'), :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
@@ -32,6 +32,6 @@
 </table>
 </ul>
 <%= will_paginate %>
-<p align="center"><%= link_to "New Program", new_program_path, :class => 'btn btn-primary'  %></p>
+<p align="center"><%= link_to I18n.t('programas.nuevo'), new_program_path, :class => 'btn btn-primary'  %></p>
 
 

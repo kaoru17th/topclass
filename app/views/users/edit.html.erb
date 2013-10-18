@@ -1,46 +1,46 @@
-<% provide(:title, "Edit user") %>
+<% provide(:title, "Editar usuario") %>
 <h1>Edit User</h1>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
-     <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages' %>
 
-      <%= f.label :firstname %>
-      <%= f.text_field :firstname %>
-      
-      <%= f.label :lastname %>
+      <%= f.label :firstname, "Nombre" %>
+      <%= f.text_field :firstname%>
+
+      <%= f.label :lastname, "Apellidos" %>
       <%= f.text_field :lastname %>
-      
-            <%= f.label :code %>
-      <%= f.text_field :code %>
-      
-            <%= f.label :identificationtype, "Identification Type" %>
-     <%=f.select(:identificationtype,options_for_select([["CC", "CC"], ["CE", "CE"]]))%>       
-      
-            <%= f.label :identification %>
-      <%= f.text_field :identification %>
-      
-      <%= f.label :status %>
-     <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
-      
-            <%= f.label :usertype,"User Type" %>
-     <%=f.select(:usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"], ["Profesor", "Profesor"]]))%>   
 
-      <%= f.label :email %>
+      <%= f.label :code,"Código" %>
+      <%= f.text_field :code %>
+
+      <%= f.label :identificationtype, "Tipo de identificación" %>
+      <%=f.select(:identificationtype,options_for_select([["CC", "CC"], ["CE", "CE"], ["TI", "TI"]]))%>       
+
+      <%= f.label :identification, "Número de identificación" %>
+      <%= f.text_field :identification %>
+
+      <%= f.label :status, "Estado" %>
+      <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
+
+      <%= f.label :usertype,"Tipo de usuario" %>
+      <%=f.select(:usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"], ["Profesor", "Profesor"]]))%>   
+
+      <%= f.label :email, "Correo" %>
       <%= f.text_field :email %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Confirmación" %>
       <%= f.password_field :password_confirmation %>
-      
-           <%= f.label :programs %>
-     <%= select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name',  {selected: @programs_ids,disabled: @programs_ids}), :multiple => true %>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <% end %>
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
+      <%= f.label :programs, "Programas" %>
+      <%= select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name',  {selected: @programs_ids,disabled: @programs_ids}), :multiple => true %>
+
+      <%= f.submit "Guardar cambios", class: "btn btn-large btn-primary" %>
+      <% end %>
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails">Cambiar</a>
+    </div>
   </div>
-</div>

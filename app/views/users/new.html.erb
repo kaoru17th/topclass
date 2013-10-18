@@ -1,30 +1,43 @@
 <% provide(:title, 'Create User') %>
+<script type="text/javascript">
+  $('select').change(validarProgramas);
+
+  function validarProgramas(userT) {
+<%#= if userT.eql?("Coordinador") %>
+  <%#=  select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name'), :multiple => false %>
+
+<%#=  else %>
+  <%#=    select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name'), :multiple => true %>
+<%# end %>
+  }
+</script>
 <h1>Create User</h1>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
-     <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages' %>
 
       <%= f.label :firstname %>
       <%= f.text_field :firstname %>
-      
+
       <%= f.label :lastname %>
       <%= f.text_field :lastname %>
-      
-            <%= f.label :code %>
+
+      <%= f.label :code %>
       <%= f.text_field :code %>
-      
-            <%= f.label :identificationtype, "Identification Type" %>
-     <%=f.select(:identificationtype,options_for_select([["CC", "CC"], ["CE", "CE"]]))%>       
-      
-            <%= f.label :identification %>
+
+      <%= f.label :identificationtype, "Identification Type" %>
+      <%=f.select(:identificationtype,options_for_select([["CC", "CC"], ["CE", "CE"]]))%>       
+
+      <%= f.label :identification %>
       <%= f.text_field :identification %>
-      
+
       <%= f.label :status %>
-     <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
-      
-            <%= f.label :usertype,"User Type" %>
-     <%=f.select(:usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"], ["Profesor", "Profesor"]]))%>   
+      <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
+
+      <%= f.label :usertype,"User Type" %>
+      <%=f.select(:usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"], ["Profesor", "Profesor"]]))%>   
+      <%#= select_ tag :usertype,options_for_select([["Estudiante", "Estudiante"], ["Coordinador", "Coordinador"], ["Profesor", "Profesor"]]),:multiple => false, :onchange=> "validarProgramas();" %>   
 
       <%= f.label :email %>
       <%= f.text_field :email %>
@@ -34,14 +47,15 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
-      
-      
-     <%= f.label :programs %>
-     <%= select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name'), :multiple => true %>
-     <!--<%=f.select(:programs,Program.all.collect {|x| [x.name, x.id]}, {}, :multiple => true)%>   -->
-      
+
+
+      <%= f.label :programs %>
+
+      <%= select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name'), :multiple => (if :usertype then true else"Estudiante".eql?"Estudiante" end) %>
+
+
 
       <%= f.submit "Create user", class: "btn btn-large btn-primary" %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
