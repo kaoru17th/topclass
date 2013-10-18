@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  def index
+  def index   
     @subjects = Subject.paginate(page: params[:page])
   end
   
@@ -31,6 +31,18 @@ class SubjectsController < ApplicationController
      @subject = Subject.find(params[:id])
   end
   
+  def disable
+    @subject = Subject.find_by_id(1)
+    @subject.status = "false"
+    if @subject.update_attributes(params[:subject])
+      flash[:success] = "Subject was disabled." 
+       redirect_to subjects_path
+    else
+      flash[:fail] = "Fail disable Subject"
+      render "index"
+    end
+  end
+  
   def update
     @subject = Subject.find_by_id(params[:id])
     if @subject.update_attributes(params[:subject])
@@ -44,7 +56,7 @@ class SubjectsController < ApplicationController
   def destroy
     @subject = Subject.find_by_id(params[:id])
     if @subject.destroy
-      flash[:success] = "Subject was destroyed."
+      flash[:success] = "Subject was destroyed." 
       redirect_to subjects_path
     else
       flash[:fail] = "Fail delete Subject"

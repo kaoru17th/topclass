@@ -109,6 +109,8 @@ GEM
     pg (0.15.1)
     pg (0.15.1-x86-mingw32)
     polyglot (0.3.3)
+    prime-rails (0.0.16)
+      jquery-rails
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -200,6 +202,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   pg (= 0.15.1)
+  prime-rails (= 0.0.16)
   rails (= 4.0.0)
   rails_12factor (= 0.0.2)
   rspec-rails (= 2.13.1)

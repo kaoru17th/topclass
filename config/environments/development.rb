@@ -28,6 +28,8 @@ Topclass::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   
+  #config.middleware.delete Rack::Lock
+  
   
   config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {

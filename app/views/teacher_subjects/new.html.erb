@@ -1,0 +1,22 @@
+<% provide(:title, 'Create Subject/Teacher') %>
+<h1>Create Subject/Teacher Relation</h1>
+<div class="row">
+  <div class="span6 offset3">
+
+    
+
+
+    <%= form_for(@teacher_subject) do |f| %>
+    
+    <%= f.label :subject %>  <%= collection_select(:teacher_subject, :subject_id, Subject.all, :id, :name) %> 
+    <%= f.label :teacher %>  <%= collection_select(:teacher_subject, :user_id, User.where(usertype: "Profesor"), :id, :firstname) %>  
+        <p align="center">
+           <%= f.submit "Add new subject", class: "btn btn-primary" %> 
+ <%= link_to "Go Back", list_teacher_subjects_path, class: "btn" %> 
+     
+    </p> 
+      
+<% end %>
+
+  </div>
+</div>

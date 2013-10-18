@@ -1,0 +1,93 @@
+<% provide(:title, 'View Semester') %>
+<script type="text/javascript">
+$(function () {
+    $('#pie_alumnos_por_maestria').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Total % de alumnos por maestria en TopClass'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    crop:'true'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Porcentaje de alumnos',
+            data: [
+            <%@students_per_program.each do |name, quantity|%>
+            	['<%=name.sub(/Maestría en/,'')%>', <%=quantity.to_f%>],
+            <% end %>
+            ]
+        }]
+    });        
+});
+                 
+$(function () {
+        $('#bar_total_conflictos').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Total alumnos por semestre'
+            },
+            xAxis: {
+                categories: [
+                 <%@semesters.each do |semester|%>
+                    '<%=semester.name%>',                 
+                 <% end %>
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total de alumnos'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [
+                <%@preregister_subjects_hash.each do |subject, value|%> 
+                      {
+                      name: '<%=subject%>',
+                      data: [<%=value%>,<%=value%>]
+                      },                 
+                 <% end %>
+                    ]
+        });
+    });
+</script>
+
+<h2>Dashboard de coordinador</h2>
+<%= link_to "Ver Semestres en curso", new_semester_path , class: "btn btn-default pull-left" %>
+<br/>
+<br/>
+<div id="pie_alumnos_por_maestria" class="pie_chart"></div>
+<div id="bar_total_conflictos" class="pie_chart"></div>

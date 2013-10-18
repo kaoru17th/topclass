@@ -16,17 +16,26 @@ match '/signin',  to: 'sessions#new',         via: 'get'
 match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 #Simulación nuevo semestre
-match '/new_semester', to: 'new_semester#index', via: 'get'
+  match '/new_semester', to: 'new_semester#index', via: 'get'
+  match '/new_semester_with_classes', to: 'new_semester#users_in_subject_rule', via: 'get'
+#Dashboard
+  match '/dashboard', to: 'dashboard#show', via: 'get'
 
   #CRUD subjects
 resources :subjects
   match '/new_subject',  to: 'subjects#new',  via: 'get'
   match '/list_subject',  to: 'subjects#index',  via: 'get'
-
+  match '/disable', to: 'subjects#disable', :as => 'disable', via: 'get'
+  
 # CRUD programs
   resources :programs
   match '/list_registered', to: 'programs#showSubjectList', via: 'get'
   match '/list_program',  to: 'programs#index',  via: 'get'
+  
+# Teacher subject
+  resources :teacher_subjects
+  match '/new_teachersubjects',  to: 'teacher_subjects#new',  via: 'get'
+  match '/list_teacher_subjects',  to: 'teacher_subjects#index',  via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

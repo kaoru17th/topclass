@@ -8,10 +8,10 @@
           <li><%= link_to "Ayuda", help_path %></li>
           <% if signed_in? %>        
             <% if admin? %>
-            	<li><%= link_to "Inscripciones", new_semester_path %></li>
-            	<li><%= link_to "Usuarios", users_path %></li>
-            	<li><%= link_to "Programas", programs_path %></li>
-            	<li><%= link_to "Materias", subjects_path %></li>
+            	<li><%= link_to "Dashboard", dashboard_path %></li>
+            	<li><%= link_to "Users", users_path %></li>
+            	<li><%= link_to "Programs", programs_path %></li>
+            	<li><%= link_to "Subjects", subjects_path %></li>
             <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

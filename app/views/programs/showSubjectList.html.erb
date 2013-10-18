@@ -3,30 +3,12 @@
 <h1>Todas las materias por programa</h1>
 
 <ul class="subjects">
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>ID Materia</th>
-      <th>Nombre</th>
-      <th>Quota</th>
-      <th>Preinscripción</th>
-      <th>Porcentaje</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @subjects.each do |subject| %>
-      <tr>
-        <td><%= subject.idSubject %></td>
-        <td><%= subject.codeSubject %></td>
-        <td><%= subject.subjectName %></td>
-        <td><%= subject.subjectQuota %></td>
-        <td><%= subject.preregisterCount %></td>
-        <td><%= subject.percentaje  %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= p_fieldset('default',legend: 'All Subjects by Program',style: 'margin-bottom:10px') do %>  
+  <p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
+  <p>You can order the column making click </p>
+  <%= p_datatable('tbl',columns: @subject_columns,datasource: @subjects,rowkey: 'id',caption: 'All Subjects by Program',paginator: { rows: 20 },selectionMode: 'single' ) %>   
+  <p></p>
+  <p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
+  <% end %> 
 </ul>
 
-<p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
