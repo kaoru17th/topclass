@@ -22,26 +22,16 @@
 </div>
 <div class="row">
   <div class="span8">
-    <% if @user.subject_records.any? %>
-      <h3>Subjects</h3>
-      <ol class="programs">
-        <%= render @subject_records %>
-      </ol>
-      <%= will_paginate @subject_records %>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <div class="span8">
 
     <% if @user.preregister_subjects.any? %>
-      <% if @user.usertype.eql?("Estudiante") %>
-        <h3>Preregister</h3>
-      <% end %>
+      <% if @user.usertype.eql?("Estudiante") && !@program.nil?%>
+        <h3><%=I18n.t('usuario.preregistro')+" "+@program.name %></h3>
+
       <ol class="programs">
         <%= render @preregister_subjects %>
       </ol>
       <%= will_paginate @preregister_subjects %>
+    <% end %>
     <% end %>
   </div>
 </div>

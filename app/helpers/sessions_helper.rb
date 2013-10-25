@@ -10,6 +10,10 @@ module SessionsHelper
   end
   
   def admin?
+    current_user.usertype == "Admin"
+  end
+  
+  def coordinador?
     current_user.usertype == "Coordinador"
   end
 

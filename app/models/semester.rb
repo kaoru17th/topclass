@@ -12,5 +12,5 @@ class Semester < ActiveRecord::Base
   has_many :subject_semesters
   has_many :subjects , :through => :subject_semesters
   
-  has_many :subject_records
+  has_many :preregister_subjects
 end

@@ -10,6 +10,7 @@ es:
     eliminado: "Usuario eliminado"
     deshabilitado: "Usuario deshabilitado"
     habilitado: "Usuario habilitado"
+    preregistro: "Preregistro"
     crear:
       exito: "Usuario creado con éxito"
       error: "Ocurrio un error al crear el usuario"
@@ -25,3 +26,5 @@ es:
     acciones: "Acciones"
     registrados: "Registrados"
     autoregistro: "Preregistro automatico"
+    mostrar: "Mostrar materias preregistradas"
+    preregistrar: "Preregistrar materia"

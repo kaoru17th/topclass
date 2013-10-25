@@ -17,9 +17,10 @@ class UsersController < ApplicationController
     else 
       
       @user = User.find(params[:id])
-      @programs = @user.programs.paginate(page: params[:page])
+      @program = Program.find_by_id(params[:program_id])
+      @programs = @user.programs.paginate(page: params[:page], :per_page => 3)
       @subject_records = @user.subject_records.paginate(page: params[:page])
-      @preregister_subjects = @user.preregister_subjects.paginate(page: params[:page])
+      @preregister_subjects = @user.preregister_subjects.where(program_id: params[:program_id]).paginate(page: params[:page])
     end
   end
   
