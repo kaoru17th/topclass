@@ -71,25 +71,30 @@ class PreregisterSubjectsController < ApplicationController
       subjects_per_semester = 2
       subjects_per_intersemester = 1
       @semesters2 = Program.find_by_id(params[:program_id]).semesters.where("startdate > ?", Time.now)
-      @subjects2 = Subject.all :joins => [:subject_programs, :subject_semesters],:conditions => {'subject_semesters.semester_id' => 1,'subject_programs.subjecttype' => "Opcional"}
       #aca primero se traen las materias registradas por semestre y se seleccionan las que menos ocupacion tengan
-      flash[:success] = @subjects2.count
+       #flash[:success] = @subjects_ocupation.count
+      #@subjects_ocupation.each do |id,count|
+      #        flash[:success] = "#{id}, #{count}"
+      #end
+        
+
+logger.info "semesters:"+@semesters2.count.to_s
       @semesters2.each do |semester|
         
         if semester.stype = "normal"
           
 
-
-          
-            @subjects_programs_optional = @subjects_programs.find_all_by_subjecttype("Opcional")
-          
-            subjects = semester.subjects
-            subjects.each do |subject|
-              
+            @subjects2 = Subject.all :joins => [:subject_programs, :subject_semesters],:conditions => {'subject_semesters.semester_id' => 1,'subject_programs.subjecttype' => "Opcional"}
             
-            suggested_subject = Array.new
+            @subjects_ocupation = Subject.count :joins => [:preregister_subjects],:conditions => {'preregister_subjects.semester_id' => 1,'preregister_subjects.program_id' => 1},:group => "subjects.id"
 
-          
+            @subjects2.each do |subject|
+                students = @subjects_ocupation[subject.id]
+                logger.info "students:"+students
+            #@subjects_programs_optional = @subjects_programs.find_all_by_subjecttype("Opcional")
+                      
+              suggested_subject = Array.new
+
             end
         
 
@@ -97,7 +102,7 @@ class PreregisterSubjectsController < ApplicationController
       
       
       
-      @programs_ids.push(program.id)
+      suggested_subject.push(subject.id)
       
     end
         
@@ -108,7 +113,7 @@ class PreregisterSubjectsController < ApplicationController
       
       
       #:reference_date => 3.months.ago..Time.now
-    #flash[:success] = @semesters2.count
+    #flash[:success] = @subjects_ocupation
 
     #@user = User.find(params[:preregister_subject].user_id)
     #@user.update_attribute(:status, "Activo")

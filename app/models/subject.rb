@@ -18,5 +18,5 @@ class Subject < ActiveRecord::Base
   
   has_one :quota_config
   
-  has_many :subject_records
+  has_many :preregister_subjects
 end

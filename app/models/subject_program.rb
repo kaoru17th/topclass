@@ -7,4 +7,5 @@ class SubjectProgram < ActiveRecord::Base
   validates :program_id, presence: true
   validates :status, presence: true
   
+
 end
