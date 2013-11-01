@@ -13,7 +13,7 @@
      <%= select_tag "semester_id", options_from_collection_for_select(@semesters, 'id', 'name') %>
 
       <%= f.label :status %>
-     <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
+     <%=f.select(:status,options_for_select([["Pendiente", "Pendiente"]]))%>   
       
      <%= hidden_field_tag "user_id", @user_id %>  
      <%= hidden_field_tag "program_id", @program_id %>  

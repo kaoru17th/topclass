@@ -1,7 +1,7 @@
 <li>
   <span class="content"><%= program.name %></span>
   <span class="content"><%= program.code %></span>
-  <%if @user.usertype.eql?("Estudiante")%>
+  <%if (@user.usertype.eql?("Estudiante") || coordinador?)%>
     <% if !@user.preregister_subjects.where(program_id: program.id).any? %>
       | <%= link_to I18n.t('programas.autoregistro'), preregister_subject_path(:automatic => 1,:user_id =>@user.id,:program_id =>program.id), method: :patch,
         data: { confirm: I18n.t('seguro')} %>

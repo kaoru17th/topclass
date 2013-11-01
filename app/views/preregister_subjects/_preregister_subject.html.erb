@@ -1,9 +1,15 @@
 <li>
   <span class="content">
   	<%= preregister_subject.semester.name %> <%= preregister_subject.subject.name %> <%= preregister_subject.status %>
-  	<% if current_user?(@user) %>
-    | <%= link_to "delete", preregister_subject, method: :delete,
+  	<% if (current_user?(@user) || coordinador?) && preregister_subject.semester.startdate > Time.now %>
+    <%= link_to "edit", edit_preregister_subject_path(preregister_subject,:program_id =>@program.id,:user_id =>@user.id) %> | <%= link_to "delete", preregister_subject, method: :delete,
                                   data: { confirm: "You sure?" } %>
+    <% end %>
+    <% if (current_user?(@user) || coordinador?) && preregister_subject.semester.startdate < Time.now && preregister_subject.semester.finaldate > Time.now %>
+    	<%= link_to "edit", edit_preregister_subject_path(preregister_subject,:program_id =>@program.id,:user_id =>@user.id) %> 
+    <% end %>
+    <% if (current_user?(@user) || coordinador?)  && preregister_subject.semester.finaldate < Time.now && preregister_subject.status=="En curso"  %>
+    	<%= link_to "edit", edit_preregister_subject_path(preregister_subject,:program_id =>@program.id,:user_id =>@user.id) %> 
     <% end %>
   </span>
 </li>

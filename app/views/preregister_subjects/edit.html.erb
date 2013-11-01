@@ -1,0 +1,34 @@
+<% provide(:title, 'New Preregister Subject') %>
+<h1>Edit Preregister Subject</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @preregister_subject do |f| %>
+
+
+
+     <%= label_tag "Subject" %>
+     <%= select_tag "subject_id", options_from_collection_for_select(@subjects, 'id', 'name', {selected: @preregister_subject.subject_id}), {:disabled => true} %>
+     
+     <%= label_tag "Semester" %>
+     <%= select_tag "semester_id", options_from_collection_for_select(@semesters, 'id', 'name', {selected: @preregister_subject.semester_id}), {:disabled => true} %>
+
+     <%= f.label :status %>
+     <% if @preregister_subject.semester.startdate < Time.now && @preregister_subject.semester.finaldate > Time.now %>
+     	<%=f.select(:status,options_for_select([["En curso", "En curso"]]))%>  
+     <% end %>
+     <% if @preregister_subject.semester.startdate > Time.now %>
+     	<%=f.select(:status,options_for_select([["Pendiente", "Pendiente"]]))%>  
+     <% end %>  
+     <% if @preregister_subject.semester.finaldate < Time.now %>
+     	<%=f.select(:status,options_for_select([["Aprobada", "Aprobada"],["No aprobada", "No aprobada"]]))%>  
+     <% end %>  
+      
+      
+     <%= hidden_field_tag "user_id", @user_id %>  
+     <%= hidden_field_tag "program_id", @program_id %>  
+     
+
+      <%= f.submit "Save Preregister Subject", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

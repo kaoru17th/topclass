@@ -26,7 +26,8 @@
     <% if @user.preregister_subjects.any? %>
       <% if @user.usertype.eql?("Estudiante") && !@program.nil?%>
         <h3><%=I18n.t('usuario.preregistro')+" "+@program.name %></h3>
-
+     <%= link_to "delete all", preregister_subject_path(:all => 1,:user_id =>@user.id,:program_id =>@program.id), method: :delete,
+                                  data: { confirm: "You sure?" } %>
       <ol class="programs">
         <%= render @preregister_subjects %>
       </ol>

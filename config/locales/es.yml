@@ -2,7 +2,7 @@
 ---
 es:
   delete: "Eliminar"
-  disable: "Inactivar"
+  disable: "Desactivar"
   enable: "Activar"
   seguro: "¿Esta seguro de realizar esta acción?"
   editar: "Editar"
