@@ -1,0 +1,24 @@
+<%if @program_semester != nil then %>
+  <h4>Semestres y programas </h4>
+  <ul class="program_per_semester_ul">
+	<table class="table table-hover">
+		<thead>
+			<th>#</th>
+			<th>Nombre de Maestria</th>
+			<th>Nombre de Semestre</th>
+			<th>Opciones</th>
+		</thead>
+		<tbody>
+      <%@program_semester.each_with_index do |ps, index|%>
+			<tr>
+				<td><%= index + 1%></td>
+				<td><%=ps.program.name%></td>
+				<td><%=ps.semester.name%></td>
+				<td><%= "Opciones" %></td>
+			</tr>
+      <% end %>
+		</tbody>
+	</table>
+  </ul>
+  <%= will_paginate @program_semester%>
+<% end %>

@@ -79,7 +79,7 @@ class NewSemesterController < ApplicationController
    idSubject= params[:subjectId]
    #Usuarios registrados por cada materia y ordenados por antiguedad para garantizar los cupos
    #Listos para ser listados!
-    index
+   
     @users_per_subject= User.includes(:preregister_subjects)
     .where(preregister_subjects: {subject_id: idSubject})
     .order("users.created_at desc")

@@ -49,7 +49,7 @@ group :doc do
 end
 
 # use Ruby debugger julian added
-gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 
 #Cucumber y Capybara
 group :test, :development do

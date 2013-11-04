@@ -1,0 +1,5 @@
+$("#program_per_semester").html("<%= escape_javascript(render("program_per_semester")) %>");
+
+$('#program_per_semester a').each( function() {
+  $(this).attr( 'data-remote', 'true' );
+});

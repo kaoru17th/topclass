@@ -89,5 +89,11 @@ $(function () {
 <%= link_to "Ver Semestres en curso", new_semester_path , class: "btn btn-default pull-left" %>
 <br/>
 <br/>
+<%= form_tag "/dashboard" do %>
+	<div id="program_per_semester">
+		<%=render partial: "program_per_semester", object: @program_semester%>
+	</div>
+<% end %>
+
 <div id="pie_alumnos_por_maestria" class="pie_chart"></div>
 <div id="bar_total_conflictos" class="pie_chart"></div>
