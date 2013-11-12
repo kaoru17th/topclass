@@ -1,6 +1,5 @@
 <%if @program_semester != nil then %>
-  <h4>Semestres y programas </h4>
-  <ul class="program_per_semester_ul">
+<ul class="program_per_semester_ul">
 	<table class="table table-hover">
 		<thead>
 			<th>#</th>
@@ -9,16 +8,21 @@
 			<th>Opciones</th>
 		</thead>
 		<tbody>
-      <%@program_semester.each_with_index do |ps, index|%>
+			<%@program_semester.each_with_index do |ps, index|%>
 			<tr>
 				<td><%= index + 1%></td>
 				<td><%=ps.program.name%></td>
 				<td><%=ps.semester.name%></td>
-				<td><%= "Opciones" %></td>
+				<td>
+					<%= link_to image_tag("topclass.png", :border=>0),{:remote => true,:action => "load_charts", :semesterId => ps.semester_id, :page => params[:page] } %>
+					
+					<%= link_to image_tag("topclass.png", :border=>0),{:remote => true,:action => "notifications", :semesterId => ps.semester_id, :page => params[:page] } %>
+					
+				</td>
 			</tr>
-      <% end %>
+			<% end %>
 		</tbody>
 	</table>
-  </ul>
-  <%= will_paginate @program_semester%>
+</ul>
+<%= will_paginate @program_semester%>
 <% end %>

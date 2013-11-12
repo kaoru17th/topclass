@@ -1,24 +1,24 @@
-  <%if @users_per_subject != nil then %>
-	  <h4>Estudiantes en el curso </h4>
-	  <ul class="users_per_subject_ul">
-		<table class="table table-hover">
-			<thead>
-				<th>#</th>
-				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>Codigo</th>
-			</thead>
-			<tbody>
-	      <%@users_per_subject.each do |user_subject|%>
-				<tr>
-						<td><%=user_subject.id %></td>
-						<td><%=user_subject.firstname%></td>
-						<td><%=user_subject.lastname%></td>
-						<td><%=user_subject.identification%></td>
-				</tr>
-	      <% end %>
-			</tbody>
-		</table>
-	  </ul>
-	  <%= will_paginate @users_per_subject%>
-  <% end %>
+<%if @users_per_subject != nil then %>
+<h4>Estudiantes en el curso </h4>
+<ul class="users_per_subject_ul">
+	<table class="table table-hover">
+		<thead>
+			<th>#</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Codigo</th>
+		</thead>
+		<tbody>
+			<%@users_per_subject.each_with_index do |user_subject, index|%>
+			<tr>
+				<td><%= index + 1 %></td>
+				<td><%=user_subject.firstname%></td>
+				<td><%=user_subject.lastname%></td>
+				<td><%=user_subject.identification%></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</ul>
+<%= will_paginate @users_per_subject%>
+<% end %>

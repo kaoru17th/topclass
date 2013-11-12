@@ -7,4 +7,3 @@ ready = ->
   	  $(this).attr "data-remote", "true"
 	  
 $(document).ready(ready)
-$(document).on "page:load", ready

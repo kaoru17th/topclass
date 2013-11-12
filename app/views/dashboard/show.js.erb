@@ -1,5 +1,47 @@
 $("#program_per_semester").html("<%= escape_javascript(render("program_per_semester")) %>");
+$("#charts").html("<%= escape_javascript(render("charts")) %>");
+$("#dashboard_notifications").html("<%= escape_javascript(render("dashboard_notifications")) %>");
 
 $('#program_per_semester a').each( function() {
-  $(this).attr( 'data-remote', 'true' );
+	$(this).attr( 'data-remote', 'true' );
 });
+
+<%if @preregister_subjects_hash!=nil%>
+$(function () {
+	$('#bar_total_conflictos').highcharts({
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: 'Total alumnos por materia'
+		},
+		xAxis: {
+			categories: [
+			<%@semesters.each do |semester|%>
+			'<%=semester.name%>'                 
+			<% end %>
+			]
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: 'Total de alumnos'
+			}
+		},
+		plotOptions: {
+			column: {
+				pointPadding: 0.2,
+				borderWidth: 0
+			}
+		},
+		series: [
+		<%@preregister_subjects_hash.each do |subject, value|%> 
+		{
+			name: '<%=subject%>',
+			data: [<%=value%>]
+		},                 
+		<% end %>
+		]
+	});
+});
+<% end %>

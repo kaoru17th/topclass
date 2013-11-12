@@ -28,6 +28,7 @@ class NewSemesterController < ApplicationController
 		@pre_subjects.each do |pre_subject|
 
       tmp_subject_id = pre_subject.semester_id.to_s + "-" + pre_subject.subject_id.to_s
+      
       if pre_subject.semester ==nil then
         tmp_sem_name = "Sin nombre semestre"
       else

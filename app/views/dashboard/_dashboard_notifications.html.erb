@@ -1,0 +1,10 @@
+<div class="row">
+  <% @missing_from_subject.each do |mfs_id , mfs_value|%>
+    <div class="span6">	
+      <div class="alert alert-error alert-block">		
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%=mfs_id%> tiene sobrecupo de <%=mfs_value%> estudiantes
+      </div>
+    </div>
+  <% end %>
+</div>
