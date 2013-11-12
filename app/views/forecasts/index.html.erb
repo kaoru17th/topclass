@@ -1,0 +1,29 @@
+<% provide(:title, I18n.t('programas.titulo')) %>
+<br/>
+<h1><%= I18n.t('forecast.titulo') %></h1>
+<ul class="programs">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= I18n.t('programas.id') %></th>
+      <th><%= I18n.t('programas.codigo') %></th>
+      <th><%= I18n.t('programas.nombre') %></th>
+      <th><%= I18n.t('forecast.escenarios') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td><%= program.id %></td>
+          <td><%= program.code %></td>
+        <td><%= link_to program.name, program_path(program) %></td>
+        <td>
+          <%= link_to "5%", forecast_scenario_path(:program_id =>program.id,:porcentage=>5), :class => 'btn btn-mini' %>
+          <%= link_to "10%", forecast_path(:program_id =>program.id,:porcentage=>10), :class => 'btn btn-mini' %>
+          <%= link_to "20%", forecast_path(:program_id =>program.id,:porcentage=>20), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</ul>

@@ -28,3 +28,6 @@ es:
     autoregistro: "Preregistro automatico"
     mostrar: "Mostrar materias preregistradas"
     preregistrar: "Preregistrar materia"
+  forecast:
+    titulo: "Forecast"
+    escenarios: "Escenarios"
