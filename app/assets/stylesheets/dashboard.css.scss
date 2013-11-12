@@ -3,7 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .pie_chart{
- min-width: 310px;
+ width: 350px;
  height: 400px;
- margin: 0 auto
+ margin: 0 auto;
+ float: left;
  }
+ 
+ .pie_chart_no_float{
+  width: 250px;
+  height: 300px;
+  margin: 0 auto;
+  }

@@ -20,10 +20,14 @@ match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/new_semester_with_classes', to: 'new_semester#users_in_subject_rule', via: 'get'
 #Dashboard
   match '/dashboard', to: 'dashboard#show', via: 'get'
+  match '/dashboard_charts', to:'dashboard#load_charts', via: 'get' 
+  match '/dashboard_notifications', to:'dashboard#notifications', via: 'get' 
+
   
 #Forecast
   match '/forecast', to: 'forecasts#index', via: 'get'  
   match '/forecast_scenario', to: 'forecasts#show', via: 'get'  
+
 
   #CRUD subjects
 resources :subjects
