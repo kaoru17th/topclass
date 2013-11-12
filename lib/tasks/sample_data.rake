@@ -212,6 +212,97 @@ namespace :db do
         PreregisterSubject.create!(semester_id:"2", subject_id: "#{n+1}", user_id:"#{n+1}", status:"Pendiente", program_id:"1")
     end
     
+    
+    #Forecast information
+    #semester 10
+    20.times do |n|
+        PreregisterSubject.create!(semester_id:"10", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "4", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "5", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "6", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "7", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+        
+        PreregisterSubject.create!(semester_id:"11", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"11", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"11", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"11", subject_id: "4", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"11", subject_id: "5", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+
+        
+        PreregisterSubject.create!(semester_id:"12", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "4", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "5", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "6", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "7", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+        PreregisterSubject.create!(semester_id:"13", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"13", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"13", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"13", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"13", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+        PreregisterSubject.create!(semester_id:"14", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "6", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "7", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+        PreregisterSubject.create!(semester_id:"15", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "4", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "5", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "6", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "7", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+        
+        
+        PreregisterSubject.create!(semester_id:"10", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"10", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+        
+        PreregisterSubject.create!(semester_id:"11", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"11", subject_id: "5", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+
+        
+        PreregisterSubject.create!(semester_id:"12", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "2", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "3", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"12", subject_id: "4", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+
+        
+        PreregisterSubject.create!(semester_id:"13", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"13", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+
+        PreregisterSubject.create!(semester_id:"14", subject_id: "7", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"14", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+        PreregisterSubject.create!(semester_id:"15", subject_id: "1", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "7", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "8", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        PreregisterSubject.create!(semester_id:"15", subject_id: "9", user_id:"#{n+1}", status:"Aprobada", program_id:"1")
+        
+    end
+    
+
+    
     #SubjectSemester.create!(subject_id:"1", semester_id: "1", status:"Activo")
     
     #SubjectRecord.create!(user_student_id: "1", semester_id: "1", subject_id: "1" ,user_teacher_id: "1", status: "Passed", grade: 3.5)
