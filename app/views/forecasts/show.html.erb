@@ -1,9 +1,43 @@
 <% provide(:title, "Forecast by program") %>
-<div class="row">
-  <aside class="span4">
-    <section>
-		Forecast!!
-    </section>
-  </aside>
+    <h3><%="Forecast "+@program.name %></h3>
+<ul class="subjects">
+    <% if @subjects_suggested.any? %>
 
-</div>
+      <ol class="programs">
+      	  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Quota</th>
+      <th>Credits</th>
+      <th>Average Ocupation (last 6)</th>
+      <th>Percentage</th>
+      <th>Groups</th>
+    </tr>
+  </thead>
+  <tbody>   	
+    <% @subjects_suggested.each do |subject| %>
+      <tr>
+        <td><%= subject.id %></td>
+          <td><%= subject.code %></td>
+        <td><%= link_to subject.name, subject_path(subject) %></td>
+          <td><%= subject.quota %></td>
+          <td><%= subject.credits %></td>
+        <td>
+			<%= @subject_students_prom[subject.id]%>
+        </td>
+         <td>
+			<%=@subject_students_prom_per[subject.id]%> %
+        </td>
+         <td>
+			<%= @subject_groups[subject.id]%>
+        </td>
+      </tr>
+    <% end %>
+      </tbody>
+</table>
+    <% end %>
+    </ul>
+

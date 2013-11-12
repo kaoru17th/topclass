@@ -8,7 +8,7 @@ class ForecastsController < ApplicationController
   end
   
   def show
-    
+      @program = Program.find_by_id(params[:program_id])
       @semesters = Program.find_by_id(params[:program_id]).semesters.where("startdate < ?", Time.now).order("startdate").limit(6)
 
       @subjects = Program.find_by_id(params[:program_id]).subjects     
@@ -32,6 +32,7 @@ class ForecastsController < ApplicationController
       
       @subject_students_prom = Hash.new
       @subject_students_prom_per = Hash.new
+      @subject_groups = Hash.new
       @subjects_suggested = Array.new
       @subjects.each do |subject|
 
@@ -77,14 +78,19 @@ class ForecastsController < ApplicationController
                 logger.info "prom_per:"+prom_per.to_s
                 if(prom_per > params[:percentage].to_f)
                   @subject_students_prom[subject.id]=prom
-                  @subject_students_prom_per[subject.id]=prom
+                  @subject_students_prom_per[subject.id]=prom_per
                   @subjects_suggested.push(subject)
+                  group = prom.to_f/subject.quota.to_f
+                  @subject_groups[subject.id]=group.ceil.to_s
                 end
 
 
       end
 
-            
+      logger.info "@subject_students_prom:"+@subject_students_prom.to_s
+      logger.info "@subject_students_prom_per:"+@subject_students_prom_per.to_s
+      logger.info "@subjects_suggested"+@subjects_suggested.to_s    
+      logger.info "@subjects_suggested_groups"+@subject_groups.to_s 
      
   end
   
