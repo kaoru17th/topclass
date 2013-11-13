@@ -12,7 +12,7 @@
           width: 400, height: 120,
           redFrom: <%= @subject.quota - 10%> , redTo: <%= @subject.quota %>,
           yellowFrom:<%= @subject.quota / 2 %>, yellowTo: <%= @subject.quota - 10 %>,
-          minorTicks: 5, max : <%= @subject.quota %>
+          minorTicks: 5, max : <%= @subject.quota %>, greenFrom: 0, greenTo: <%= @subject.quota / 2 %>
         };
 
         var chart = new google.visualization.Gauge(document.getElementById('chart_div'));

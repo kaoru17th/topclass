@@ -6,11 +6,12 @@ class ProgramsController < ApplicationController
   
   def showSubjectList
     @program = Program.find(params[:format])
+    @programList = Program.find_by_sql("select p.name from programs p ")
     @subject_columns = [   {field: 'idSubject', headerText: 'ID', sortable: true}, {field: 'codeSubject', headerText: 'ID Subject', sortable: true},    
                          {field: 'subjectName', headerText: 'Subject Name', sortable: true},   {field: 'subjectQuota', headerText: 'Quota', sortable: true},   
                         {field: 'preregisterCount', headerText: 'Preinscription', sortable: true}, {field: 'percentaje', headerText: 'Percentaje', sortable: true}                  
                         ] 
-    @subjects = Program.find_by_sql(["select p.id idProgram, s.id idSubject, s.code codeSubject, s.name subjectName, s.quota subjectQuota, count(ps.subject_id) as preregisterCount, ((count(ps.subject_id)*100/s.quota)) percentaje  from programs p, subject_programs sp, subjects s, preregister_subjects ps where p.id = ? and p.id = sp.program_id and sp.subject_id = s.id and s.id = ps.subject_id group by ps.subject_id, p.id, s.id, s.code, s.name, s.quota order by percentaje",  @program.id])
+    @subjects = Program.find_by_sql(["select distinct p.id idProgram, s.id idSubject, s.code codeSubject, s.name subjectName, s.quota subjectQuota, count(ps.subject_id) as preregisterCount, ((count(ps.subject_id)*100/s.quota)) percentaje  from programs p, subject_programs sp, subjects s, preregister_subjects ps where p.id = ? and p.id = sp.program_id and sp.subject_id = s.id and s.id = ps.subject_id group by ps.subject_id, p.id, s.id, s.code, s.name, s.quota order by percentaje",  @program.id])
   end
   
   def show
