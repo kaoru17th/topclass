@@ -10,6 +10,7 @@
     
     <%= f.label :subject %>  <%= collection_select(:teacher_subject, :subject_id, Subject.all, :id, :name) %> 
     <%= f.label :teacher %>  <%= collection_select(:teacher_subject, :user_id, User.where(usertype: "Profesor"), :id, :firstname) %>  
+     
         <p align="center">
            <%= f.submit "Add new subject", class: "btn btn-primary" %> 
  <%= link_to "Go Back", list_teacher_subjects_path, class: "btn" %> 

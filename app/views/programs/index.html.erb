@@ -22,7 +22,7 @@
         <td><%= link_to program.name, program_path(program) %></td>
           <td><%= program.objective %></td>
         <td>
-          <%= link_to I18n.t('programas.registrados'), list_registered_path(program), :class => 'btn btn-mini' %>
+          <%= link_to I18n.t('programas.materias.boton'), list_registered_path(program.id), :class => 'btn btn-mini' %>
           <%= link_to I18n.t('editar'), edit_program_path(program), :class => 'btn btn-mini' %>
           <%= link_to I18n.t('delete'), program_path(program), :method => :delete, :confirm => I18n.t('seguro'), :class => 'btn btn-mini btn-danger' %>
         </td>

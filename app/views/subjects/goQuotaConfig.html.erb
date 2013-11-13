@@ -1,0 +1,31 @@
+<% provide(:title, 'Create Subject') %>
+<h1>Create Subject</h1>
+<div class="row">
+  <div class="span6 offset3">
+   
+    <%= form_for @quota, url: createQuota_path(@quota) , html: {method: "post"} do |f|  %>
+
+    <%= p_fieldset('default',legend: 'Datos Básicos',style: 'margin-bottom:10px') do %>      
+      <%= f.hidden_field :id  %>  
+      <%= f.label :subject_id %>
+      <%= f.text_field :subject_id %>
+      
+      <%= f.label :own_quota %>
+      <%= f.text_field :own_quota %>
+      
+      <%= f.label :program_quota %>
+      <%= f.text_field :program_quota %>
+      
+      <%= f.label :pregrade_quota %>
+      <%= f.text_field :pregrade_quota %>
+     
+    <% end %> 
+    
+    <p align="center">
+      <%= f.submit "Add new subject", class: "btn btn-primary" %> 
+     <%= link_to "Go Back", list_subject_path, class: "btn" %> 
+    </p> 
+      
+    <% end %>
+  </div>
+</div>

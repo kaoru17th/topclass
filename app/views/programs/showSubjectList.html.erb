@@ -1,14 +1,17 @@
+
+
+
 <% provide(:title, 'Todas las materias por programa') %>
 
-<h1>Todas las materias por programa</h1>
+<h1><%= I18n.t('programas.materias.titulo') %></h1>
 
 <ul class="subjects">
-  <%= p_fieldset('default',legend: 'All Subjects by Program',style: 'margin-bottom:10px') do %>  
-  <p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
-  <p>You can order the column making click </p>
-  <%= p_datatable('tbl',columns: @subject_columns,datasource: @subjects,rowkey: 'id',caption: 'All Subjects by Program',paginator: { rows: 20 },selectionMode: 'single' ) %>   
+  <%= p_fieldset('default',legend: I18n.t('programas.materias.subtitulo'),style: 'margin-bottom:10px') do %>
+  <p align="center"><%= link_to I18n.t('programas.materias.volver'), list_program_path, :class => 'btn' %> </p>
+  <p><%= I18n.t('materias.estudiantes.instruccion') %> </p>
+  <%= p_datatable('tbl',columns: @subject_columns,datasource: @subjects,rowkey: 'id',caption: I18n.t('programas.materias.titulo') ,paginator: { rows: 20 },selectionMode: 'single' ) %>
   <p></p>
-  <p align="center"><%= link_to "Go Back", list_program_path, :class => 'btn' %> </p>
-  <% end %> 
+  <p align="center"><%= link_to I18n.t('programas.materias.volver'), list_program_path, :class => 'btn' %> </p>
+  <% end %>
 </ul>
 

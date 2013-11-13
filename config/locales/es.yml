@@ -24,10 +24,38 @@ es:
     nombre: "Nombre"
     objetivo: "Objetivo"
     acciones: "Acciones"
-    registrados: "Registrados"
+    materias: "Materias"
+    inscritos: "Inscritos"
     autoregistro: "Preregistro automatico"
     mostrar: "Mostrar materias preregistradas"
     preregistrar: "Preregistrar materia"
+    crear:
+      titulo: "Crear Programa"
+      volver: "Volver"
+    editar:
+      titulo: "Editar Programa"
+      volver: "Volver"
+    materias:
+      boton: "Materias"
+      titulo: "Todas las materias por programa"
+      subtitulo: "Materias por programa"
+      volver: "Volver"
+      instruccion: "A continuación se presenta la lista de materias asociadas a una materia según el programa seleccionado, haga clic en las columnas que desee ordenar"
+  materias:
+    boton:
+      estudiantes: "Estudiantes"
+      quota: "Cuotas"
+    estudiantes:
+      table:
+        identificacion: "Documento"
+        email: "Correo"
+        apellido: "Apellido"
+        nombre: "Nombre"
+        estado: "Estado"
+      titulo: "Listado de Estudiantes por materia"
+      subtitulo: "Estudiantes por materia"
+      volver: "Volver"
+      instruccion: "A continuación se presenta la lista de estudiantes asociados a una materia según el programa seleccionado, haga clic en las columnas que desee ordenar"
   forecast:
     titulo: "Forecast"
     escenarios: "Escenarios"

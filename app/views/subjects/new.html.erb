@@ -5,6 +5,8 @@
     <%= form_for(@subject) do |f| %>
      <%= render 'shared/subject_error_messages' %>
 
+    <%= p_fieldset('default',legend: 'Datos Básicos',style: 'margin-bottom:10px') do %>      
+    
       <%= f.label :code %>
       <%= f.text_field :code %>
       
@@ -20,6 +22,7 @@
       <%= f.label :status %>
      <%=f.select(:status,options_for_select([["Activo", "true"], ["Inactivo", "false"]]))%>   
      
+    <% end %> 
     
     <p align="center">
       <%= f.submit "Add new subject", class: "btn btn-primary" %> 

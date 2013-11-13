@@ -34,10 +34,15 @@ resources :subjects
   match '/new_subject',  to: 'subjects#new',  via: 'get'
   match '/list_subject',  to: 'subjects#index',  via: 'get'
   match '/disable', to: 'subjects#disable', :as => 'disable', via: 'get'
+  match '/list_student_by', to: 'subjects#showStudentList#:id', via: 'get'
+  match '/showStudentList', to: 'subjects#showStudentList', via: 'get'
+  match '/config_quota_by', to: 'subjects#goQuotaConfig#:id', via: 'get'
+  match '/createQuota', to: 'subjects#createQuota', via: 'post'
   
+ 
 # CRUD programs
   resources :programs
-  match '/list_registered', to: 'programs#showSubjectList', via: 'get'
+  match '/list_registered', to: 'programs#showSubjectList#id', via: 'get'
   match '/list_program',  to: 'programs#index',  via: 'get'
   
 # Teacher subject

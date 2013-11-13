@@ -12,6 +12,41 @@ class SubjectsController < ApplicationController
     end
   end
   
+  def showStudentList
+    # <%= link_to I18n.t('materias.boton.estudiantes'), :controller => 'subjects', :action => 'showStudentList', :idSubject => subject.id %>
+    @subject = Subject.find(params[:format])
+    @student_columns = [   {field: 'idStudent', headerText: 'ID', sortable: true}, {field: 'identification', headerText: I18n.t('materias.estudiantes.table.identificacion'), sortable: true},    
+      {field: 'firstname', headerText: I18n.t('materias.estudiantes.table.nombre'), sortable: true},   {field: 'lastname', headerText: I18n.t('materias.estudiantes.table.apellido'), sortable: true},   
+      {field: 'email', headerText: I18n.t('materias.estudiantes.table.email'), sortable: true}, {field: 'status', headerText: I18n.t('materias.estudiantes.table.estado'), sortable: true}                  
+                        ] 
+    @students = Subject.find_by_sql(["select u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from subject_records sr, users u where sr.subject_id = ? and sr.user_student_id = u.id ", @subject.id])
+  end
+  
+  def goQuotaConfig
+    @subject = Subject.find(params[:format])
+    @quota =  QuotaConfig.where("subject_id = ?", @subject.id).last
+    if @quota.nil?
+      @quota = QuotaConfig.new
+    end
+    @quota.subject_id = @subject.id
+  end
+  
+  def createQuota
+    logger.info(params[:quota_config])
+    begin
+       @quota =  QuotaConfig.find(params[:quota_config][:id])
+       logger.info("INFO: Update quota config ")
+       @quota.update_attributes(params[:quota_config])
+       flash[:success] = "Quota was updated sucesfull"
+    rescue
+     logger.info("INFO: Saving new quota config ")
+     @quota = QuotaConfig.new(quota_params)
+     @quota.save
+     flash[:success] = "Quota was created sucesfull"
+    end           
+    redirect_to subjects_path    
+  end
+  
   def new
     @subject = Subject.new
   end
@@ -68,6 +103,10 @@ class SubjectsController < ApplicationController
 
   def subject_params
       params.require(:subject).permit(:code,:name,:quota,:credits,:status) 
+    end
+  
+    def quota_params
+      params.require(:quota_config).permit(:subject_id,:own_quota,:program_quota,:pregrade_quota) 
     end
   
     def signed_in_user
