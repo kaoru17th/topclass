@@ -504,12 +504,12 @@ namespace :db do
   PreregisterSubject.create!(semester_id:"13", subject_id: "2", user_id:"134", status:"Aprobada", program_id:"1")
 
  
-    User.create!(firstname: "VICTOR HERNAN", lastname:"RODRIGUEZ ZAMBRANO", code:"201110963", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Estudiante", password:"test12345", password_confirmation: "test12345", email:"test1333@uniandes.edu.co") 
+    User.create!(firstname: "VICTOR HERNAN", lastname:"RODRIGUEZ ZAMBRANO", code:"201110963", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Estudiante", password:"test12345", password_confirmation: "test12345", email:"test13334@uniandes.edu.co") 
   PreregisterSubject.create!(semester_id:"13", subject_id: "5", user_id:"135", status:"Aprobada", program_id:"1")
   PreregisterSubject.create!(semester_id:"13", subject_id: "9", user_id:"135", status:"Aprobada", program_id:"1")
 
 
-    User.create!(firstname: "CARLOS", lastname:"SANABRIA BUITRAGO", code:"201221640", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Estudiante", password:"test12345", password_confirmation: "test12345", email:"test1333@uniandes.edu.co") 
+    User.create!(firstname: "CARLOS", lastname:"SANABRIA BUITRAGO", code:"201221640", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Estudiante", password:"test12345", password_confirmation: "test12345", email:"test133322221@uniandes.edu.co") 
   PreregisterSubject.create!(semester_id:"13", subject_id: "5", user_id:"136", status:"Aprobada", program_id:"1")
   PreregisterSubject.create!(semester_id:"13", subject_id: "4", user_id:"136", status:"Aprobada", program_id:"1")
   PreregisterSubject.create!(semester_id:"15", subject_id: "9", user_id:"136", status:"Aprobada", program_id:"1")
