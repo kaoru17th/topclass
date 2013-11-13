@@ -7,6 +7,17 @@
 
 <ul class="students">
   <%= p_fieldset('default',legend: I18n.t('materias.estudiantes.subtitulo'),style: 'margin-bottom:10px') do %>
+  
+     <%= form_for @semester, url: searchStudentList_path(@semester) , html: {method: "get"} do |f|  %>
+      <%= f.hidden_field :status %>
+      <%= f.label :id , "Semestre"%>
+  
+      <% semester_array = Semester.all.map { |sem| [sem.name, sem.id] } %>
+  
+      <%=f.select(:id,options_for_select(semester_array))%>   
+      <%= f.submit "Buscar", class: "btn btn-primary" %>      
+    <% end %>   
+  
   <p align="center"><%= link_to I18n.t('materias.estudiantes.volver'), list_subject_path, :class => 'btn' %> </p>
   <p><%= I18n.t('materias.estudiantes.instruccion') %> </p>
   <%= p_datatable('tbl',columns: @student_columns,datasource: @students,rowkey: 'id',caption: I18n.t('materias.estudiantes.titulo') ,paginator: { rows: 20 },selectionMode: 'single' ) %>

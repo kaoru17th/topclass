@@ -1,6 +1,6 @@
 <% provide(:title, 'All subjects') %>
-<h1>All subjects</h1>
-<p align="center"><%= link_to "New Subject", new_subject_path, :class => 'btn btn-primary'  %></p> 
+<h1>Materias</h1>
+<p align="center"><%= link_to "Nueva Materia", new_subject_path, :class => 'btn btn-primary'  %></p> 
 
 <%= will_paginate %>
 <ul class="subjects">
@@ -29,9 +29,9 @@
           
           <%= link_to I18n.t('materias.boton.estudiantes'), list_student_by_path(subject.id), :class => 'btn btn-mini' %>
            <%= link_to I18n.t('materias.boton.quota'), config_quota_by_path(subject.id), :class => 'btn btn-mini' %>
-          <%= link_to 'Edit', edit_subject_path(subject), :class => 'btn btn-mini' %>
-          <%= link_to 'Disable', disable_path(subject), :class => 'btn btn-mini' %>
-          <%= link_to 'Delete', subject_path(subject), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Editar', edit_subject_path(subject), :class => 'btn btn-mini' %>
+          <%= link_to 'Deshabilitar', disable_path(subject.id), :class => 'btn btn-mini' %>
+          <%= link_to 'Borrar', subject_path(subject), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
           
   
         </td>
@@ -41,4 +41,4 @@
 </table>
 </ul>
 <%= will_paginate %>
-<p align="center"><%= link_to "New Subject", new_subject_path, :class => 'btn btn-primary'  %></p>
+<p align="center"><%= link_to "Nueva Materia", new_subject_path, :class => 'btn btn-primary'  %></p>

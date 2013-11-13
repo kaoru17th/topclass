@@ -38,6 +38,7 @@ resources :subjects
   match '/showStudentList', to: 'subjects#showStudentList', via: 'get'
   match '/config_quota_by', to: 'subjects#goQuotaConfig#:id', via: 'get'
   match '/createQuota', to: 'subjects#createQuota', via: 'post'
+  match '/searchStudentList', to: 'subjects#searchStudentList', via: 'get'
   
  
 # CRUD programs

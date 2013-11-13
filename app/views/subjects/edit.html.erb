@@ -18,7 +18,7 @@
       <%= f.text_field :credits %>
       
       <%= f.label :status %>
-     <%=f.select(:status,options_for_select([["Activo", "true"], ["Inactivo", "false"]]))%>   
+       <%=f.select(:status,options_for_select([["Activo", "activo"], ["Inactivo", "inactivo"]], 2) )%>   
             
   <p align="center">
       <%= f.submit "Update subject", class: "btn btn-primary" %> 

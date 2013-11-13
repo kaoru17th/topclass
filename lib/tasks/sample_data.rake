@@ -309,9 +309,6 @@ namespace :db do
     end
     
     #SubjectSemester.create!(subject_id:"1", semester_id: "1", status:"Activo")
-    
-    #SubjectRecord.create!(user_student_id: "1", semester_id: "1", subject_id: "1" ,user_teacher_id: "1", status: "Passed", grade: 3.5)
-    
     #PreregisterSubject.create!(user_id: "1", semester_id: "1", subject_id: "1" , status: "Activa")
     
   end
