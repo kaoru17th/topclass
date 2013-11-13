@@ -21,7 +21,7 @@ class SubjectsController < ApplicationController
       {field: 'email', headerText: I18n.t('materias.estudiantes.table.email'), sortable: true}, {field: 'status', headerText: I18n.t('materias.estudiantes.table.estado'), sortable: true}                  
                         ] 
     @semester = Semester.last
-    @students = Subject.find_by_sql(["select distinct  u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = ? and sr.subject_id = ? and sr.user_id = u.id ", @semester.id, @subject.id])
+    @students = Subject.find_by_sql(["select distinct  u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = 1 and sr.subject_id = 1 and sr.user_id = u.id ", @semester.id, @subject.id])
     @semester.status =  @subject.id
     @students.count
   end
