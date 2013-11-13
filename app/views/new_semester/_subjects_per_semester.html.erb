@@ -1,0 +1,34 @@
+<%if @program_semester != nil then %>
+<ul class="subjects_per_semester_ul">
+	<table class="table table-hover">
+		<thead>
+			<th>#</th>
+			<th>Nombre de materia</th>
+			<th>Creditos</th>
+			<th>Cupos totales</th>
+			<th>Cupos ocupados</th>
+			<th>Opciones</th>
+		</thead>
+		<tbody>
+			<% @program_semester.each do |ps|%>
+			<% ps.semester.subjects.each_with_index do |s, index|%>
+			<tr class="<%=@missing_from_subject_color[ps.semester_id.to_s + '-' + s.id.to_s]%>">
+				<td><%= index + 1%></td>
+				<td><%=s.name%></td>
+				<td><%=s.credits%></td>
+				<td><%=s.quota%></td>
+				<td><%=@subjects_hash[ps.semester_id.to_s+ "-" + s.id.to_s]%></td>
+				<td>
+					<%= link_to image_tag("estadistica3.png", :border=>0) , {:remote => true,:action => "users_in_subject_rule", :subjectId => s.id, :semesterId => ps.semester_id , :page => params[:page] } %>
+					
+					<%= link_to image_tag("notificaciones4.png", :border=>0) , {:remote => true,:action => "users_not_in_subject_rule", :subjectId => s.id, :semesterId => ps.semester_id , :page => params[:page] } %>
+					
+				</td>
+			</tr>
+			<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</ul>
+<%#= will_paginate ps.semester.subjects , :id => 'program_per_semester_pag'%>
+<% end %>

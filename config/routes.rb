@@ -18,6 +18,8 @@ match '/signout', to: 'sessions#destroy',     via: 'delete'
 #Simulación nuevo semestre
   match '/new_semester', to: 'new_semester#index', via: 'get'
   match '/new_semester_with_classes', to: 'new_semester#users_in_subject_rule', via: 'get'
+  match '/new_semester_with_classes2', to: 'new_semester#users_not_in_subject_rule', via: 'get'
+  
 #Dashboard
   match '/dashboard', to: 'dashboard#show', via: 'get'
   match '/dashboard_charts', to:'dashboard#load_charts', via: 'get' 

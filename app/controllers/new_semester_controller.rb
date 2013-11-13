@@ -10,7 +10,7 @@ class NewSemesterController < ApplicationController
 		#Cargo toda la información de los programas y semestres
 		@program_semester=ProgramSemester.includes(:program,semester: :subjects,program: :subjects)
     .where("status='Activo' and semester_id=" +params[:semesterId]+" and program_id="+params[:programId])
-
+    
 		#@subject_program= SubjectProgram.find(:all, :conditions =>"status = 'Activo'")
     #Materias ordenadas por orden de registro
 		@pre_subjects=PreregisterSubject.includes(:subject, :semester).order(:created_at)
@@ -65,10 +65,10 @@ class NewSemesterController < ApplicationController
         
         @missing_from_subject[tmp_subject_id_name] += 1
         #Color
-        @missing_from_subject_color[tmp_subject_id] ="border span5 subjectFull"
+        @missing_from_subject_color[tmp_subject_id] ="error"
       else
         @subjects_hash[tmp_subject_id] += 1
-        @missing_from_subject_color[tmp_subject_id] ="border span5"
+        @missing_from_subject_color[tmp_subject_id] =""
       end
 		end
 	end
@@ -79,15 +79,51 @@ class NewSemesterController < ApplicationController
   #PreregisterSubject.includes(:subject, :semester,:user).order("user.created_at desc")            
   
   def users_in_subject_rule
+   
+   @users_per_subject_missing=nil
+   
    idSubject= params[:subjectId]
+   idSemester= params[:semesterId]
    #Usuarios registrados por cada materia y ordenados por antiguedad para garantizar los cupos
    #Listos para ser listados!
    
-    @users_per_subject= User.includes(:preregister_subjects)
-    .where(preregister_subjects: {subject_id: idSubject})
-    .order("users.created_at desc")
+    materia_seleccionada=Subject.find(idSubject)
+    
+    @primeros=PreregisterSubject
+    .includes(:subject, :semester)
+    .select("user_id").where("subject_id ="+idSubject +" and semester_id="+idSemester)
+    .order(:created_at)
+    .limit(materia_seleccionada.quota)   
+    
+    @users_per_subject= User
+    .where("id IN (?)", @primeros.pluck(:user_id))
     .paginate :page => params[:page], :per_page => 5
-    render "index"  
+    
+    render :index  
+  end
+  
+  def users_not_in_subject_rule
+    
+    @users_per_subject= nil
+    
+    idSubject= params[:subjectId]
+    idSemester= params[:semesterId]
+    #Usuarios registrados por cada materia y ordenados por antiguedad para garantizar los cupos
+    #Listos para ser listados!
+   
+     materia_seleccionada=Subject.find(idSubject)
+    
+    @alumnos_por_fuera=PreregisterSubject
+    .includes(:subject, :semester)
+    .select("user_id").where("subject_id ="+idSubject +" and semester_id="+idSemester)
+    .order(:created_at)
+    .offset(materia_seleccionada.quota)
+    
+    @users_per_subject_missing= User
+    .where("id IN (?)", @alumnos_por_fuera.pluck(:user_id))
+    .paginate :page => params[:page], :per_page => 5
+    
+    render :index
   end
 
 	def new

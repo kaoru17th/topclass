@@ -1,5 +1,10 @@
 $("#users_per_subject").html("<%= escape_javascript(render("users_per_subject")) %>");
+$("#users_per_subject_missing").html("<%= escape_javascript(render("users_per_subject_missing")) %>");
 
   $('#users_per_subject a').each( function() {
+    $(this).attr( 'data-remote', 'true' );
+  }); 
+
+  $('#users_per_subject_missing a').each( function() {
     $(this).attr( 'data-remote', 'true' );
   });
