@@ -6,13 +6,28 @@ class ProgramsController < ApplicationController
   
   def showSubjectList
     @program = Program.find(params[:format])
-    @programList = Program.find_by_sql("select p.name from programs p ")
+    @semester = Semester.new
     @subject_columns = [   {field: 'idSubject', headerText: 'ID', sortable: true}, {field: 'codeSubject', headerText: 'ID Subject', sortable: true},    
                          {field: 'subjectName', headerText: 'Subject Name', sortable: true},   {field: 'subjectQuota', headerText: 'Quota', sortable: true},   
                         {field: 'preregisterCount', headerText: 'Preinscription', sortable: true}, {field: 'percentaje', headerText: 'Percentaje', sortable: true}                  
                         ] 
-    @subjects = Program.find_by_sql(["select distinct p.id idProgram, s.id idSubject, s.code codeSubject, s.name subjectName, s.quota subjectQuota, count(ps.subject_id) as preregisterCount, ((count(ps.subject_id)*100/s.quota)) percentaje  from programs p, subject_programs sp, subjects s, preregister_subjects ps where p.id = ? and p.id = sp.program_id and sp.subject_id = s.id and s.id = ps.subject_id group by ps.subject_id, p.id, s.id, s.code, s.name, s.quota order by percentaje",  @program.id])
+    @semester = Semester.last
+    @subjects = Program.find_by_sql(["select distinct p.id idProgram, s.id idSubject, s.code codeSubject, s.name subjectName, s.quota subjectQuota, count(ps.id) as preregisterCount, (count(ps.id)*100 / s.quota) percentaje from programs p, subjects s, preregister_subjects ps where p.id = ? and p.id = ps.program_id and ps.subject_id = s.id and ps.semester_id = ? group by ps.subject_id, p.id, s.id, s.code, s.name, s.quota;",  @program.id, @semester.id])
+    @semester.status =  @program.id
   end
+  
+  def searchSubjectList
+    @program = Program.find_by_id(params[:semester][:status])
+    @semester = Semester.find(params[:semester][:id])
+    @subject_columns = [   {field: 'idSubject', headerText: 'ID', sortable: true}, {field: 'codeSubject', headerText: 'ID Subject', sortable: true},    
+                         {field: 'subjectName', headerText: 'Subject Name', sortable: true},   {field: 'subjectQuota', headerText: 'Quota', sortable: true},   
+                        {field: 'preregisterCount', headerText: 'Preinscription', sortable: true}, {field: 'percentaje', headerText: 'Percentaje', sortable: true}                  
+                        ] 
+    @subjects = Program.find_by_sql(["select distinct p.id idProgram, s.id idSubject, s.code codeSubject, s.name subjectName, s.quota subjectQuota, count(ps.id) as preregisterCount, (count(ps.id)*100 / s.quota) percentaje from programs p, subjects s, preregister_subjects ps where p.id = ? and p.id = ps.program_id and ps.subject_id = s.id and ps.semester_id = ? group by ps.subject_id, p.id, s.id, s.code, s.name, s.quota;",  @program.id, @semester.id])
+    @semester.status =  @program.id
+    flash[:success] = "Se ha cargado el listado de materias del programa para el semestre " + @semester.name   
+    render "showSubjectList"
+  end  
   
   def show
     @program = Program.find(params[:id])

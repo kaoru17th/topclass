@@ -72,8 +72,30 @@ $(function () {
 <h1><%= I18n.t('programas.materias.titulo') %></h1>
 <ul class="subjects">
   <%= p_fieldset('default',legend: I18n.t('programas.materias.subtitulo'),style: 'margin-bottom:10px') do %>
-  <p align="center"><%= link_to I18n.t('programas.materias.volver'), list_program_path, :class => 'btn' %> </p>
-       <div id='container'></div>
+       <%= form_for @semester, url: searchSubjectList_path(@semester) , html: {method: "get"} do |f|  %>
+  
+  <table width="100%">
+    <tr>
+      <td width="15%">
+        <%= f.hidden_field :status %>
+      <%= f.label :id , "Semestre"%>
+  
+      <% semester_array = Semester.all.map { |sem| [sem.name, sem.id] } %>
+  
+      <%=f.select(:id,options_for_select(semester_array), :style => "width:70px")%>   
+      <p align="center"> <%= f.submit "Buscar", class: "btn btn-primary" %>
+        <%= link_to I18n.t('programas.materias.volver'), list_program_path, :class => 'btn' %> </p>
+      </td>
+      <td width="85%" align="center">
+          <div id='container'></div>
+      </td>
+    </tr>
+  </table>
+            
+    <% end %> 
+  
+ 
+       
   <p><%= I18n.t('materias.estudiantes.instruccion') %> </p>
   <%= p_datatable('tbl',columns: @subject_columns,datasource: @subjects,rowkey: 'id',caption: I18n.t('programas.materias.titulo') ,paginator: { rows: 20 },selectionMode: 'single' ) %>
   <p></p>

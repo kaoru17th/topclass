@@ -45,6 +45,7 @@ resources :subjects
   resources :programs
   match '/list_registered', to: 'programs#showSubjectList#id', via: 'get'
   match '/list_program',  to: 'programs#index',  via: 'get'
+  match '/searchSubjectList', to: 'programs#searchSubjectList', via: 'get'
   
 # Teacher subject
   resources :teacher_subjects
