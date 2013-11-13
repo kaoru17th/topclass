@@ -57,12 +57,25 @@ namespace :db do
     User.create!(firstname: "Coordinador", lastname:"Coordinador", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Coordinador", password:"test12345", password_confirmation: "test12345", email:"kaoru17th@gmail.com")
     User.create!(firstname: "Admin", lastname:"Admin", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Admin", password:"test12345", password_confirmation: "test12345", email:"admin@zyos.co")
     User.create!(firstname: "Profesor", lastname:"Profesor", code:"200012581", identificationtype:"CC", identification:"80123456", status:"Activo", usertype:"Profesor", password:"test12345", password_confirmation: "test12345", email:"da.gonzalez15@uniandes.edu.co")
-    99.times do |n|
+    
+    49.times do |n|
+      firstname = Faker::Name.first_name
+      lastname = Faker::Name.last_name
+      code = "20121173#{n+1}"
+      identification = Faker::Address.zip_code
+      email = "example-#{n+1}@uniandes.edu.co"
+      password = "password"
+      User.create!(firstname: firstname, lastname:lastname, code:code,
+      identificationtype:"CC", identification:identification, status:"Activo",
+      usertype:"Estudiante", password:password, password_confirmation:password, email:email)
+    end
+    
+    50.times do |n|
       firstname = Faker::Name.first_name
       lastname = Faker::Name.last_name
       code = "20122173#{n+1}"
       identification = Faker::Address.zip_code
-      email = "example-#{n+1}@uniandes.edu.co"
+      email = "example2-#{n+1}@uniandes.edu.co"
       password = "password"
       User.create!(firstname: firstname, lastname:lastname, code:code,
       identificationtype:"CC", identification:identification, status:"Activo",
