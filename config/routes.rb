@@ -40,12 +40,14 @@ resources :subjects
   match '/showStudentList', to: 'subjects#showStudentList', via: 'get'
   match '/config_quota_by', to: 'subjects#goQuotaConfig#:id', via: 'get'
   match '/createQuota', to: 'subjects#createQuota', via: 'post'
+  match '/searchStudentList', to: 'subjects#searchStudentList', via: 'get'
   
  
 # CRUD programs
   resources :programs
   match '/list_registered', to: 'programs#showSubjectList#id', via: 'get'
   match '/list_program',  to: 'programs#index',  via: 'get'
+  match '/searchSubjectList', to: 'programs#searchSubjectList', via: 'get'
   
 # Teacher subject
   resources :teacher_subjects

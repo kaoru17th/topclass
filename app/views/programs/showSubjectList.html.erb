@@ -1,13 +1,101 @@
 
+<script type='text/javascript'>
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Materias por programa'
+            },
+            subtitle: {
+                text: 'Universidad de los Andes'
+            },
+            xAxis: {
+                categories: [
+                  <%@subjects.each do |s|%>
+                   '<%=s.codeSubject%>',
+                  <% end %>
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'valor'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Cuota',
+                data: [
+                 <%@subjects.each do |s|%>
+                   <%=s.subjectQuota%>,
+                  <% end %>
+                ]
+    
+            }, {
+                name: 'Preinscritos',
+                data: [
+                 <%@subjects.each do |s|%>
+                   <%=s.preregisterCount%>,
+                  <% end %>
+                ]
+    
+            }, {
+                name: 'Porcentaje',
+                data: [
+                  <%@subjects.each do |s|%>
+                   <%=s.percentaje%>,
+                  <% end %>
+                ]
+    
+            }]
+        });
+    });
 
-
+    </script>
 <% provide(:title, 'Todas las materias por programa') %>
 
 <h1><%= I18n.t('programas.materias.titulo') %></h1>
-
 <ul class="subjects">
   <%= p_fieldset('default',legend: I18n.t('programas.materias.subtitulo'),style: 'margin-bottom:10px') do %>
-  <p align="center"><%= link_to I18n.t('programas.materias.volver'), list_program_path, :class => 'btn' %> </p>
+       <%= form_for @semester, url: searchSubjectList_path(@semester) , html: {method: "get"} do |f|  %>
+  
+  <table width="100%">
+    <tr>
+      <td width="15%">
+        <%= f.hidden_field :status %>
+      <%= f.label :id , "Semestre"%>
+  
+      <% semester_array = Semester.all.map { |sem| [sem.name, sem.id] } %>
+  
+      <%=f.select(:id,options_for_select(semester_array), :style => "width:70px")%>   
+      <p align="center"> <%= f.submit "Buscar", class: "btn btn-primary" %>
+        <%= link_to I18n.t('programas.materias.volver'), list_program_path, :class => 'btn' %> </p>
+      </td>
+      <td width="85%" align="center">
+          <div id='container'></div>
+      </td>
+    </tr>
+  </table>
+            
+    <% end %> 
+  
+ 
+       
   <p><%= I18n.t('materias.estudiantes.instruccion') %> </p>
   <%= p_datatable('tbl',columns: @subject_columns,datasource: @subjects,rowkey: 'id',caption: I18n.t('programas.materias.titulo') ,paginator: { rows: 20 },selectionMode: 'single' ) %>
   <p></p>

@@ -11,7 +11,7 @@ class SubjectRecord < ActiveRecord::Base
     validates :user_student_id, presence: true
     validates :semester_id, presence: true
     validates :subject_id, presence: true
-    validates :status, presence: true
-    validates :user_teacher_id, presence: true
-    validates :grade, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :status, presence: false
+  validates :user_teacher_id, presence: false
+  validates :grade, presence: false, numericality: { greater_than_or_equal_to: 0 }
 end

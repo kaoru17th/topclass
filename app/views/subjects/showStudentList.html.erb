@@ -1,5 +1,24 @@
 
+<script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Inscritos', <%= @students.count %>]
+        ]);
 
+        var options = {
+          width: 400, height: 120,
+          redFrom: <%= @subject.quota - 10%> , redTo: <%= @subject.quota %>,
+          yellowFrom:<%= @subject.quota / 2 %>, yellowTo: <%= @subject.quota - 10 %>,
+          minorTicks: 5, max : <%= @subject.quota %>, greenFrom: 0, greenTo: <%= @subject.quota / 2 %>
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
 
 <% provide(:title, 'Todas las materias por programa') %>
 
@@ -7,8 +26,31 @@
 
 <ul class="students">
   <%= p_fieldset('default',legend: I18n.t('materias.estudiantes.subtitulo'),style: 'margin-bottom:10px') do %>
+  
+     <%= form_for @semester, url: searchStudentList_path(@semester) , html: {method: "get"} do |f|  %>
+  
+  <table>
+    <tr>
+       <td width="50%" align="center">
+          <div id='chart_div'></div>
+      </td>
+      <td width="50%">
+        <%= f.hidden_field :status %>
+      <%= f.label :id , "Semestre"%>
+  
+      <% semester_array = Semester.all.map { |sem| [sem.name, sem.id] } %>
+  
+      <%=f.select(:id,options_for_select(semester_array), :style => "width:70px")%>   
+      <%= f.submit "Buscar", class: "btn btn-primary" %>
+      </td>
+    </tr>
+  </table>
+            
+    <% end %>   
+  
   <p align="center"><%= link_to I18n.t('materias.estudiantes.volver'), list_subject_path, :class => 'btn' %> </p>
   <p><%= I18n.t('materias.estudiantes.instruccion') %> </p>
+  <p align="center">Se han encontrado un total de <%= @students.count %> estudiantes</p>
   <%= p_datatable('tbl',columns: @student_columns,datasource: @students,rowkey: 'id',caption: I18n.t('materias.estudiantes.titulo') ,paginator: { rows: 20 },selectionMode: 'single' ) %>
   <p></p>
   <p align="center"><%= link_to I18n.t('materias.estudiantes.volver'), list_subject_path, :class => 'btn' %> </p>

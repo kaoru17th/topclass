@@ -15,11 +15,28 @@ class SubjectsController < ApplicationController
   def showStudentList
     # <%= link_to I18n.t('materias.boton.estudiantes'), :controller => 'subjects', :action => 'showStudentList', :idSubject => subject.id %>
     @subject = Subject.find(params[:format])
+    @semester = Semester.new
     @student_columns = [   {field: 'idStudent', headerText: 'ID', sortable: true}, {field: 'identification', headerText: I18n.t('materias.estudiantes.table.identificacion'), sortable: true},    
       {field: 'firstname', headerText: I18n.t('materias.estudiantes.table.nombre'), sortable: true},   {field: 'lastname', headerText: I18n.t('materias.estudiantes.table.apellido'), sortable: true},   
       {field: 'email', headerText: I18n.t('materias.estudiantes.table.email'), sortable: true}, {field: 'status', headerText: I18n.t('materias.estudiantes.table.estado'), sortable: true}                  
                         ] 
-    @students = Subject.find_by_sql(["select u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from subject_records sr, users u where sr.subject_id = ? and sr.user_student_id = u.id ", @subject.id])
+    @semester = Semester.last
+    @students = Subject.find_by_sql(["select distinct  u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = ? and sr.subject_id = ? and sr.user_id = u.id ", @semester.id, @subject.id])
+    @semester.status =  @subject.id
+    @students.count
+  end
+  
+  def searchStudentList
+    @subject = Subject.find_by_id(params[:semester][:status])
+    @semester = Semester.find(params[:semester][:id])
+    @student_columns = [   {field: 'idStudent', headerText: 'ID', sortable: true}, {field: 'identification', headerText: I18n.t('materias.estudiantes.table.identificacion'), sortable: true},    
+      {field: 'firstname', headerText: I18n.t('materias.estudiantes.table.nombre'), sortable: true},   {field: 'lastname', headerText: I18n.t('materias.estudiantes.table.apellido'), sortable: true},   
+      {field: 'email', headerText: I18n.t('materias.estudiantes.table.email'), sortable: true}, {field: 'status', headerText: I18n.t('materias.estudiantes.table.estado'), sortable: true}                  
+                        ] 
+    @students = Subject.find_by_sql(["select distinct  u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = ? and sr.subject_id = ? and sr.user_id = u.id ", @semester.id, @subject.id])
+    @semester.status =  @subject.id
+    flash[:success] = "Se ha cargado el listado de usuario para el semestre " + @semester.name   
+    render "showStudentList"
   end
   
   def goQuotaConfig
@@ -32,19 +49,28 @@ class SubjectsController < ApplicationController
   end
   
   def createQuota
-    logger.info(params[:quota_config])
     begin
        @quota =  QuotaConfig.find(params[:quota_config][:id])
-       logger.info("INFO: Update quota config ")
-       @quota.update_attributes(params[:quota_config])
-       flash[:success] = "Quota was updated sucesfull"
+       if @quota.own_quota < (@quota.pregrade_quota + @quota.program_quota)
+         flash[:fail] = "La cuota máxima no debe superar la suma de pregado y postgrado"
+         render "goQuotaConfig"
+       else
+         logger.info("INFO: Update quota config ")
+         @quota.update_attributes(params[:quota_config])
+         flash[:success] = "Quota was updated sucesfull"         
+         redirect_to subjects_path    
+       end
     rescue
-     logger.info("INFO: Saving new quota config ")
-     @quota = QuotaConfig.new(quota_params)
-     @quota.save
-     flash[:success] = "Quota was created sucesfull"
+      @quota = QuotaConfig.new(quota_params)
+      if @quota.own_quota < (@quota.pregrade_quota + @quota.program_quota)
+        flash[:fail] = "La cuota máxima no debe superar la suma de pregado y postgrado"
+         render "goQuotaConfig"
+       else
+         logger.info("INFO: Saving new quota config ")
+         @quota.save
+         flash[:success] = "Quota was created sucesfull"
+      end
     end           
-    redirect_to subjects_path    
   end
   
   def new
@@ -67,8 +93,8 @@ class SubjectsController < ApplicationController
   end
   
   def disable
-    @subject = Subject.find_by_id(1)
-    @subject.status = "false"
+    @subject = Subject.find(params[:format])
+    @subject.status = "inactivo"
     if @subject.update_attributes(params[:subject])
       flash[:success] = "Subject was disabled." 
        redirect_to subjects_path
