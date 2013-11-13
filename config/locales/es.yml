@@ -44,7 +44,7 @@ es:
   materias:
     boton:
       estudiantes: "Estudiantes"
-      quota: "Cuotas"
+      quota: "Cuota"
     estudiantes:
       table:
         identificacion: "Documento"

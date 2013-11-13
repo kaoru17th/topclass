@@ -8,12 +8,11 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Quota</th>
-      <th>Credits</th>
-      <th>Created at</th>
-      <th>Actions</th>
+      <th>Codigo</th>
+      <th>Nombre</th>
+      <th>Cuota</th>
+      <th>Creditos</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -24,7 +23,6 @@
         <td><%= link_to subject.name, subject_path(subject) %></td>
           <td><%= subject.quota %></td>
           <td><%= subject.credits %></td>
-        <td><%= subject.created_at %></td>
         <td>
           
           <%= link_to I18n.t('materias.boton.estudiantes'), list_student_by_path(subject.id), :class => 'btn btn-mini' %>

@@ -21,8 +21,9 @@ class SubjectsController < ApplicationController
       {field: 'email', headerText: I18n.t('materias.estudiantes.table.email'), sortable: true}, {field: 'status', headerText: I18n.t('materias.estudiantes.table.estado'), sortable: true}                  
                         ] 
     @semester = Semester.last
-    @students = Subject.find_by_sql(["select u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = ? and sr.subject_id = ? and sr.user_id = u.id ", @semester.id, @subject.id])
+    @students = Subject.find_by_sql(["select distinct  u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = ? and sr.subject_id = ? and sr.user_id = u.id ", @semester.id, @subject.id])
     @semester.status =  @subject.id
+    @students.count
   end
   
   def searchStudentList
@@ -32,8 +33,9 @@ class SubjectsController < ApplicationController
       {field: 'firstname', headerText: I18n.t('materias.estudiantes.table.nombre'), sortable: true},   {field: 'lastname', headerText: I18n.t('materias.estudiantes.table.apellido'), sortable: true},   
       {field: 'email', headerText: I18n.t('materias.estudiantes.table.email'), sortable: true}, {field: 'status', headerText: I18n.t('materias.estudiantes.table.estado'), sortable: true}                  
                         ] 
-    @students = Subject.find_by_sql(["select u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = ? and sr.subject_id = ? and sr.user_id = u.id ", @semester.id, @subject.id])
+    @students = Subject.find_by_sql(["select distinct  u.id idStudent, u.firstname, u.lastname, u.identification, u.email, u.status from preregister_subjects sr, users u where sr.semester_id = ? and sr.subject_id = ? and sr.user_id = u.id ", @semester.id, @subject.id])
     @semester.status =  @subject.id
+    flash[:success] = "Se ha cargado el listado de usuario para el semestre " + @semester.name   
     render "showStudentList"
   end
   
