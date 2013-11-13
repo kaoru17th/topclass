@@ -16,7 +16,7 @@
       <tr>
         <td><%= program.id %></td>
           <td><%= program.code %></td>
-        <td><%= link_to program.name, program_path(program) %></td>
+        <td><%= link_to program.name, program_path(program.id) %></td>
         <td>
           <%= link_to "30%", forecast_scenario_path(:program_id =>program.id,:percentage=>30), :class => 'btn btn-mini' %>
           <%= link_to "50%", forecast_scenario_path(:program_id =>program.id,:percentage=>50), :class => 'btn btn-mini' %>

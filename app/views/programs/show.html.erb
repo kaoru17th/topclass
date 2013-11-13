@@ -1,0 +1,29 @@
+<% provide(:title, 'Create Subject') %>
+<h1>Ver Programa</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@program) do |f| %>
+
+    <%= p_fieldset('default',legend: 'Datos Básicos',style: 'margin-bottom:10px') do %>      
+    
+      <%= f.label :code, "Codigo" %>
+      <%= f.text_field :code %>
+      
+      <%= f.label :name , "Nombre"%>
+      <%= f.text_field :name %>
+      
+      <%= f.label :objective %>
+      <%= f.text_area :objective %>
+      
+      <%= f.label :status , "Estado"%>
+      <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
+     
+    <% end %> 
+    
+    <p align="center"> 
+     <%= link_to "Volver", list_program_path, class: "btn" %> 
+    </p> 
+      
+    <% end %>
+  </div>
+</div>
