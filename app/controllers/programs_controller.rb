@@ -81,7 +81,7 @@ class ProgramsController < ApplicationController
     private
 
   def program_params
-    params.require(:program).permit(:code,:name,:objetive,:status) 
+    params.require(:program).permit(:code,:name,:objective,:status) 
     end
   
     def signed_in_user
