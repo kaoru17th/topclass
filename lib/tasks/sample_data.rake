@@ -60,7 +60,7 @@ namespace :db do
     99.times do |n|
       firstname  = Faker::Name.first_name
       lastname = Faker::Name.last_name
-      code = Faker::Address.zip_code
+      code = "20122173#{n+1}"
       identification = Faker::Address.zip_code
       email = "example-#{n+1}@uniandes.edu.co"
       password  = "password"
