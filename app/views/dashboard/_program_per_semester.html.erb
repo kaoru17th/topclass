@@ -8,15 +8,17 @@
 			<th>Opciones</th>
 		</thead>
 		<tbody>
-			<%@program_semester.each_with_index do |ps, index|%>
+			<% @program_semester.each_with_index do |ps, index|%>
 			<tr>
 				<td><%= index + 1%></td>
 				<td><%=ps.program.name%></td>
 				<td><%=ps.semester.name%></td>
 				<td>
-					<%= link_to image_tag("topclass.png", :border=>0),{:remote => true,:action => "load_charts", :semesterId => ps.semester_id, :page => params[:page] } %>
+					<%= link_to image_tag("estadistica3.png", :border=>0),{:remote => true,:action => "load_charts", :semesterId => ps.semester_id, :page => params[:page] } %>
 					
-					<%= link_to image_tag("topclass.png", :border=>0),{:remote => true,:action => "notifications", :semesterId => ps.semester_id, :page => params[:page] } %>
+					<%= link_to image_tag("notificaciones3.png", :border=>0),{:remote => true,:action => "notifications", :semesterId => ps.semester_id, :page => params[:page] } %>
+
+					<%= link_to image_tag("topclass.png", :border=>0),{:controller => "new_semester",:action => "index", :semesterId => ps.semester_id, :programId=> ps.program_id} %>
 					
 				</td>
 			</tr>
@@ -24,5 +26,5 @@
 		</tbody>
 	</table>
 </ul>
-<%= will_paginate @program_semester%>
+<%= will_paginate @program_semester , :id => 'program_per_semester_pag'%>
 <% end %>

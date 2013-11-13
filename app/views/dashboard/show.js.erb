@@ -2,7 +2,7 @@ $("#program_per_semester").html("<%= escape_javascript(render("program_per_semes
 $("#charts").html("<%= escape_javascript(render("charts")) %>");
 $("#dashboard_notifications").html("<%= escape_javascript(render("dashboard_notifications")) %>");
 
-$('#program_per_semester a').each( function() {
+$('#program_per_semester_pag a').each( function() {
 	$(this).attr( 'data-remote', 'true' );
 });
 

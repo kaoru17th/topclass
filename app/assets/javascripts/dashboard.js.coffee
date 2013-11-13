@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
-	$("#program_per_semester a").each ->
+	$("#program_per_semester_pag a").each ->
   	  $(this).attr "data-remote", "true"
 	  
 $(document).ready(ready)

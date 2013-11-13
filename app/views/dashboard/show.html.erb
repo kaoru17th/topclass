@@ -1,5 +1,6 @@
 <% provide(:title, 'View Semester') %>
 <script type="text/javascript">
+//PIE DE ALUMNOS
 $(function () {
 	$('#pie_alumnos_por_maestria').highcharts({
 		chart: {
@@ -31,16 +32,68 @@ $(function () {
 			<% end %>
 			]
 		}]
-	});        
+	});
 });
-	
+
+$(function () {
+        $('#total_alumnos_por_semestre').highcharts({
+            title: {
+                text: 'Total alumnos por semestre',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: [
+                     <%Semester.order(:startdate).all.each do |tmp_semester|%>
+      					'<%=tmp_semester.name%>',
+    				<% end %>
+    				]
+            },
+            yAxis: {
+                title: {
+                    text: '# Alumnos'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'Alumnos'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Alumnos',
+                data: [
+                    <%@total_alumnos_por_semestre.each do |alumnos_por_semestre|%>
+      					<%=alumnos_por_semestre%>,
+    				<% end %>
+    				]
+            }]
+        });
+    });
+
 	
 </script>
 <h2>Dashboard de coordinador</h2>
-<%= link_to "Ver Semestres en curso", new_semester_path , class: "btn btn-default pull-left" %>
 <br/>
 <h3>Indicadores y metricas actuales de las maestrias:</h3>
-<div id="pie_alumnos_por_maestria" class="pie_chart_no_float"></div>
+<div class="row">
+	<div class="span3">
+		Total Preinscripciones: <%=@total_preinscripciones%><br/>
+		Total Alumnos: <%=@total_alumnos%>
+	</div>
+	<div id="pie_alumnos_por_maestria" class="pie_chart"/>	
+</div>
+<div class="row">
+	<div id="total_alumnos_por_semestre" class="pie_chart"/>
+</div>
+
 <br/>
 <h4>Semestres y programas </h4>
 <%= form_tag "/dashboard_charts" do %>

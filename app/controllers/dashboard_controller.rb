@@ -8,9 +8,24 @@ class DashboardController < ApplicationController
     
     #Maestria por alumnos
     @students_per_program=UserProgram.joins(:program).select("count(*),programs.name").group("programs.name").count
+
+    #Total alumnos por semestre
+    @total_alumnos= User.all.count
+
+    #Total Preinscripciones
+    @total_preinscripciones= PreregisterSubject.all.count
     
     #inicialización para evitar error
     @missing_from_subject=Hash.new
+
+    
+    @total_alumnos_por_semestre= Array.new
+
+    #Total alumnos por semestre
+    Semester.order(:startdate).all.each do |tmp_semester|
+      @total_alumnos_por_semestre.push(User.where("status='Activo' and code LIKE '"+tmp_semester.name[0..3]+tmp_semester.name[6]+"%' ").count) 
+    end
+
   end
   
   def load_charts
