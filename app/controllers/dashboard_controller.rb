@@ -3,7 +3,8 @@ class DashboardController < ApplicationController
   def show
     #Cargo toda la información de los programas y semestres
     @program_semester=ProgramSemester.includes(:program,semester: :subjects,program: :subjects)
-    .where("status='Activo'")
+    .where("program_semesters.status='Activo'")
+    .order("semesters.startdate")
     .paginate :page => params[:page], :per_page => 5
     
     #Maestria por alumnos

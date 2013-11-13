@@ -1,7 +1,7 @@
 <% provide(:title, "Forecast by program") %>
     <h3><%="Forecast "+@program.name %></h3>
 <ul class="subjects">
-    <% if @subjects_suggested.any? %>
+    <% if @subjects_suggested != nil && @subjects_suggested.any? %>
 
       <ol class="programs">
       	  <table class="table table-striped">

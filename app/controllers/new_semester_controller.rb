@@ -8,7 +8,8 @@ class NewSemesterController < ApplicationController
 		#end		
 
 		#Cargo toda la información de los programas y semestres
-		@program_semester=ProgramSemester.includes(:program,semester: :subjects,program: :subjects)
+		@program_semester=ProgramSemester
+    .includes(:program,semester: :subjects,program: :subjects)
     .where("status='Activo' and semester_id=" +params[:semesterId]+" and program_id="+params[:programId])
     
 		#@subject_program= SubjectProgram.find(:all, :conditions =>"status = 'Activo'")

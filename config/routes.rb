@@ -8,7 +8,7 @@ resources :users
 resources :preregister_subjects
 resources :sessions, only: [:new, :create, :destroy]
   
-root  'static_pages#home'
+root  'sessions#new'
 match '/newuser',  to: 'users#new',  via: 'get'
 match '/help', to: 'static_pages#help', via: 'get'
 match '/about',   to: 'static_pages#about',   via: 'get'

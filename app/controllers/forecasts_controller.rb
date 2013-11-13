@@ -10,7 +10,9 @@ class ForecastsController < ApplicationController
   def show
       @program = Program.find_by_id(params[:program_id])
       @semesters = Program.find_by_id(params[:program_id]).semesters.where("startdate < ?", Time.now).order("startdate").limit(6)
-
+      if @semesters ==  nil || @semesters.count < 6 then 
+        flash.now[:error] = 'No hay suficientes semestres para hacer el calculo de la demanda. Se necesitan minimo 6'
+      else
       @subjects = Program.find_by_id(params[:program_id]).subjects     
 
       logger.info "total semesters:"+@semesters.count.to_s
@@ -91,7 +93,7 @@ class ForecastsController < ApplicationController
       logger.info "@subject_students_prom_per:"+@subject_students_prom_per.to_s
       logger.info "@subjects_suggested"+@subjects_suggested.to_s    
       logger.info "@subjects_suggested_groups"+@subject_groups.to_s 
-     
+    end
   end
   
 end
