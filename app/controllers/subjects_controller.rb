@@ -94,9 +94,9 @@ class SubjectsController < ApplicationController
   
   def disable
     @subject = Subject.find(params[:format])
-    @subject.status = "inactivo"
+    @subject.status = @subject.status == "Inactivo" ? "Activo" : "Inactivo"
     if @subject.update_attributes(params[:subject])
-      flash[:success] = "Subject was disabled." 
+      flash[:success] = @subject.status == "Inactivo" ?  "La materia fue Inactivada" : "La materia fue Activada"
        redirect_to subjects_path
     else
       flash[:fail] = "Fail disable Subject"

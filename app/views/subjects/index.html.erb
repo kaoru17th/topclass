@@ -28,7 +28,7 @@
           <%= link_to I18n.t('materias.boton.estudiantes'), list_student_by_path(subject.id), :class => 'btn btn-mini' %>
            <%= link_to I18n.t('materias.boton.quota'), config_quota_by_path(subject.id), :class => 'btn btn-mini' %>
           <%= link_to 'Editar', edit_subject_path(subject), :class => 'btn btn-mini' %>
-          <%= link_to 'Deshabilitar', disable_path(subject.id), :class => 'btn btn-mini' %>
+          <%= link_to subject.status == "Activo" ? 'Deshabilitar' : 'Habilitar', disable_path(subject.id), :class => 'btn btn-mini' %>
           <%= link_to 'Borrar', subject_path(subject), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
           
   
